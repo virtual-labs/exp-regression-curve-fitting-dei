@@ -1,0 +1,474 @@
+<!doctype html><html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="preload" href="https://planetcalc.com/font/pc-icons.woff2?t=2f4187228ca956c693a7216e80d6ea51" as="font" type="font/woff2" crossorigin/>
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin/>
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+	<link rel="preconnect" href="https://ajax.googleapis.com/" crossorigin/>
+<link rel="stylesheet" href="../style/min/planetcalc_common_4231.css">
+<link rel ="stylesheet" href ="../style/mystyle.css">
+<script async src="../../cdn.fuseplatform.net/publift/tags/2/3228/fuse.js"></script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+<meta name="keywords" content="#polynomial, #regression, approximation, cubic regression, curve fit, function, hyperbolic regression, Lagrange, linear least squares, linear regression, logarithmic regression, Math, polynomial regression, quadratic regression, regression, regression analysis, variable"/><meta name="description" content=" This online calculator builds a regression model to fit a curve using the linear least squares method. If additional constraints on the approximating function are entered, the calculator uses Lagrange multipliers to find the solutions."/><meta name="author" content="Timur : planetcalc member"/><meta name="generator" content="Planetcalc"/><link rel="canonical" href="index.html" /><style media="all">
+img.pc-math { vertical-align:middle;max-width: 100%; height: auto; }
+.social-float {
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left: 0;
+	right: 0;
+	width: 350px;
+    	height: 100px;
+    	background: white;
+	box-shadow: 0 0 10px rgba(0,0,0,0.5);
+	z-index: 100;
+}
+td.comment_created {
+    border-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+td.message {
+	padding-top:0 !important;
+}
+
+#main_div { padding:0 }
+.f_ {
+	margin-top:0;
+	line-height: normal;
+}
+
+	#request_status { width:900px; }
+	.modal-body {  max-height: 800px;}
+.sofia {
+	margin:8px auto;
+	text-align:center;
+}
+.right-ads { margin:16px 0; }
+.v5 {
+	background-color:#fafafa;
+}
+.card-authors { padding:0 1.5em 1.5em 1.5em; }
+
+.author-date {
+	padding:16px 0;
+}
+.author-date i {
+	padding-right:8px;
+}
+.author-date a {
+	padding-right:32px;
+}
+#comments {
+	margin-top:32px;
+}
+#comments .t9 {
+	margin-top:0;
+}
+.ads-inline {
+    text-align: center;
+}
+.embed-form {
+	margin-bottom:16px;
+}
+.similar-calc ul li { padding:0 0 16px 16px; display: inline-block; }
+#bottom-right-card { position: -webkit-sticky; position:sticky; top: 80px; }
+#publift_hrec_1{min-height:100px}#publift_hrec_2{min-height:250px}#publift_mrec_1{min-height:250px}#publift_vrec_1{min-height:600px}#publift_footer{min-height:250px}
+@media (min-width:480px){#publift_hrec_1{min-height:60px}}
+@media (min-width:768px){#publift_hrec_1{min-height:90px}}
+
+#xj0{
+	width: 50%;
+	float: left;
+}
+#xj01{
+	float:right ;
+	width: 30%;
+}
+
+
+
+#xj0{
+	width: 40%;
+	float: left;
+}
+#xj01 {
+	float:right ;
+	width: 40%;
+}
+#xj02{
+	float:left ;
+	width: 40%;
+}
+
+
+</style>
+<title>Curve fitting using linear least squares methods</title>
+</head>
+
+
+<header id="header">
+	<button class="menu-btn" id="head-btn" onclick="dispmenu()">
+		<div class="bar"></div>
+		<div class="bar"></div>
+		<div class="bar"></div>
+	</button>
+	<a href="https://www.vlab.co.in/"><img src="https://www.vlab.co.in/images/logo.jpg"></a>
+			<div class="right-head">
+	</div>
+</header>
+<section class="csection" id="csec">
+	<nav class="side-nav" id="navbar">
+	<div class="nav-element">
+		<a href="index.html " ><span class="cp">Aim</span></a>
+	</div>
+	<div class="nav-element">
+		<a href="theory.html" >Theory</a>
+	</div>
+	<div class="nav-element">
+		<a href="objective.html" >Objective</a>
+	</div>
+	<div class="nav-element">
+		<a href="pretest.html" >Pretest</a>
+	</div>
+	<div class="nav-element">
+		<a href="procedure.html" >Procedure</a>
+	</div>
+	<div class="nav-element">
+		<a href="simulation_1/index.html">Simulation</a>
+	</div>
+	<div class="nav-element">
+		<a href="posttest.html" >Posttest</a>
+	</div>
+	<div class="nav-element">
+		<a href="references.html" >References</a>
+	</div>
+	<div class="nav-element">
+		<a href="feedback.html" >Feedback</a>
+	</div>
+	</nav>
+	<main class="main-section" id="main-sec">
+
+<body id="ui_viewer" class="y1 viewer"> 
+	
+<div class="main-column x_ g0" id="left-block"><script>
+document.addEventListener("DOMContentLoaded",function() {
+	var f = new FormatterTimeSpan();
+	$('.nav-created').text(function ( i,t ) { return f.Format(t);});
+});
+</script>
+
+
+<div class="pc-article-part"><div class="u5">
+	
+
+	<div class=""  id="dialogv6411c56fad6d1">
+		<div class="txtarea" style="margin-left: 40px;">
+			<div class="x_ j0" id="xj0"><div class="j4 m4 g8 ">
+				<textarea 
+				class="l4"  
+				name="xstring" 
+				id="dialogv6411c56fad6d1_xstring" rows="2" 
+				cols="60">01 02
+				</textarea>
+		
+		<div class="c3 k3">
+		<div class="e3"></div>
+		<div class="f3"><label class="h3 i3" for="dialogv6411c56fad6d1_xstring">X values, separated by space</label></div>
+		<div class="g3"></div></div></div><div class="n4"><div id="hlp_dialogv6411c56fad6d1_xstring" class="e4 c4"></div></div></div>
+		
+		
+		<div class="x_ j0" id="xj01"><div class="j4 m4 g8 "><textarea class="l4"  name="ystring" id="dialogv6411c56fad6d1_ystring" rows="2" cols="60"> 04 05</textarea>
+		<div class="c3 k3"><div class="e3"></div><div class="f3"><label class="h3 i3" for="dialogv6411c56fad6d1_ystring">Y values, separated by space</label></div><div class="g3"></div></div></div><div class="n4"><div id="hlp_dialogv6411c56fad6d1_ystring" class="e4 c4"></div></div></div>
+		</div>
+
+
+<div class="x_ j0"><div class="n" id="dialogv6411c56fad6d1_constraints"><table class="eb">
+	<thead><tr>
+		<th aria-sort="none" class="pc-column-header p9"><div class="v8" id="dialogv6411c56fad6d1_approxlist"><label class="l8"></label>
+			<div class="n8">
+				<div class="h2">
+					<div class="j2">
+						<input class="k2" type="checkbox" id="dialogv6411c56fad6d1_approxlist0" name="approxlist[]" checked value="dolinear"/>
+						<div class="l2"><svg class="p2" viewBox="0 0 24 24"><path class="s2" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg>
+							<div class="mdc-checkbox__mixedmark">
+
+							</div>
+						</div>
+					</div>
+					<label for="dialogv6411c56fad6d1_approxlist0">Linear regression</label>
+				</div>
+			
+			</div></div></th>
+		<th aria-sort="none" class="pc-column-header p9"><div class="r8"><button type="button" id="dialogv6411c56fad6d1_calculate" class="c2 g2 s_ pc-btn-calc"><span id="dialogv6411c56fad6d1_button_text">Calculate</span></button></div></th>
+		
+		<th><div class="v8"><label class="l8"></label><div class="x8" id="ctrl_dialogv6411c56fad6d1_precisionmetervalue">Digits after the decimal point: 4</div><div id="dialogv6411c56fad6d1_precisionmeter" aria-controls="ctrl_dialogv6411c56fad6d1_precisionmetervalue" class="pc-precision y8 h6 v6" tabindex="0" role="slider" data-step="1" aria-valuetext="Digits after the decimal point: 4" aria-valuemin="0" aria-valuemax="20" aria-valuenow="4"><div class="k6"><div class="j6"></div></div><div class="q6"><div class="p6"><span class="r6"></span></div><svg class="n6" width="21" height="21"><circle cx="10.5" cy="10.5" r="7.875"></circle></svg><div class="o6"></div></div></div></div></th>
+	</tr><tbody><tr class="x fb"><td class="gb"><div class="j2"><input class="k2" type="checkbox"/><div class="l2"><svg class="p2" viewBox="0 0 24 24"><path class="s2" fill="none" stroke="white" d="M1.73,12.91 8.1,19.28 22.79,4.59"/></svg><div class="mdc-checkbox__mixedmark"></div></div></div></td><td class="p9"></td><td class="p9"></td><td class="p9"><button type="button" class="vb c2 pc-btn-edit-line" title="Edit"><i class="material-icons">&#xe254;</i></button></td></tr></tbody></table><footer class="w"><span class="pc-paging-items">Items per page: </span><div class="s3 _ "><i class="w3"></i><select class="t3" id="dialogv6411c56fad6d1_constraints_page" ><option selected="selected"  value="5">5</option>
+<option  value="10">10</option>
+<option  value="20">20</option>
+<option  value="50">50</option>
+<option  value="100">100</option>
+<option  value="1000">1000</option>
+</select><div class="_3"></div></div><span data-pattern="%1 of %2" class="cb"></span><button type="button" class="vb c2 pc-button-prev" title="Previous page"><i class="material-icons">&#xe5cb;</i></button><button type="button" class="vb c2 pc-button-next" title="Next page"><i class="material-icons">&#xe5cc;</i></button></footer><p id="hlp_dialogv6411c56fad6d1_constraints" class="e4"></p></div>
+</div>
+<!-------second div------------------------------------->
+<div class="x_ j0" style="margin-top: -30px; text-align: center;"><div class="n" id="dialogv6411c56fad6d1_constraints"><table class="eb" style="text-align:center ;">
+	<thead><tr>
+		<th aria-sort="none" class="pc-column-header p9" style="text-align: center;"><div class="x_ a0"><div class="o8">Linear correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rxy">&nbsp;</div></div></th>
+		<th aria-sort="none" class="pc-column-header p9" style="text-align: center;"><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rlinear">&nbsp;</div></div>
+			</th>
+		<th aria-sort="none" class="pc-column-header p9" style="text-align: center;"><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Alinear">&nbsp;</div></div></th>
+
+	</tr>
+	</table></div>
+</div>
+<!-------second div ends------------------------------------->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>function Cdialoghandlerv6411c56fc91bf( ){
+			var callback = null; var me = this;function changeDisplay(dlg) {}this.initdialog = function ( dlg ) { this.Dialog = dlg; };
+			this.onkeypressed = function ( controlid, evt ) { return true;};
+			this.onchanged = function ( controlid ) { if (!this.Dialog.Validate()) { return false; } changeDisplay(this.Dialog); return true; };
+			this.New = function( cb ) { callback = cb; this.Dialog.SetDefaultValues(); changeDisplay(this.Dialog); this.Dialog.Show(); 
+			};
+			this.Edit = function( record, cb ) { callback = cb; this.Dialog.SetValues( record ); changeDisplay(this.Dialog); this.Dialog.Show(); 
+			};this.oncommand = function ( buttonid ) { if ( buttonid == "save_label" ) { 
+				if ( !this.Dialog.Validate() ) { return; } 
+				callback( this.Dialog.GetValues()); 
+			}
+			if ( buttonid.substr(buttonid.length-6)=="_label") {
+				this.Dialog.Hide();	
+			} else if ( this.Dialog.Validate() ) { changeDisplay(this.Dialog); }
+			}
+			}</script><aside class="s4 i8" id="dialogv6411c56fc91bf"><div class="z4"><div class="u4"><h2 class="v4" id="dialogv6411c56fc91bf__title">Function must pass through particular points</h2><div class="w4"><div class="w_"><div class="x_ a0"><div class="j4 g8"><input class="l4" type="text"  id="dialogv6411c56fc91bf_x"/><div class="_3"></div></div><div class="n4"><div id="hlp_dialogv6411c56fc91bf_x" class="e4 c4"></div></div></div><div class="x_ a0"><div class="j4 g8"><input class="l4" type="text"  id="dialogv6411c56fc91bf_y"/><div class="_3"></div></div><div class="n4"><div id="hlp_dialogv6411c56fc91bf_y" class="e4 c4"></div></div></div><input type="hidden" value="" id="dialogv6411c56fc91bf_pkID"/></div></div><footer class="aa"><button class="c2" type="button" id="dialogv6411c56fc91bf_save_label"><span class="f2 ">Save</span></button>
+<button class="c2" type="button" id="dialogv6411c56fc91bf_cancel_label"><span class="f2 ">Cancel</span></button>
+</footer></div></div><div class="t4"></div></aside>
+<script>function Dialogv6411c56fc91bf() {var me = this;me.id = "dialogv6411c56fc91bf";me.GetElement = function () { return document.getElementById( me.id ); };me.GetEventHandlerName = function () { return "dialoghandlerv6411c56fc91bf"; };this.ctrl = null; function getControl() { if ( !me.ctrl ) me.ctrl = PLANETCALC.dialog(me.GetElement()); return me.ctrl;};this.Show = function () { getControl().open(); };this.Hide = function () { getControl().close(); };this.dialog_controls = [new DialogInput("x", this, new ValidatorNumber( true, true),new ElementAccessorNumber(),new ValidatorNumber( true, true)),new DialogInput("y", this, new ValidatorNumber( true, true),new ElementAccessorNumber(),new ValidatorNumber( true, true)),new DialogInput("pkID", this, 0,new ElementAccessorHidden()),new DialogInput("save_label", this, 0,new ElementAccessorButton(function(){dialoghandlerv6411c56fc91bf.oncommand('save_label');})),new DialogInput("cancel_label", this, 0,new ElementAccessorButton(function(){dialoghandlerv6411c56fc91bf.oncommand('cancel_label');}))];me.dialog_controls._all ={};me.dialog_controls.forEach( function( e ) { if (me[e.id]===undefined) me[e.id] = e; me.dialog_controls._all[e.id] = e;} );this.addHandler = function ( handler ) {this.dialog_controls.forEach(function(c) { c.addHandler( handler);});};this.SetValues = function ( values ) {this.dialog_controls.forEach(function(c) {if ( values[c.id]!==undefined ) { c.SetValue( values[c.id] ); }});};this.Clear = function ( ) {this.dialog_controls.forEach(function( c) { c.ResetValue();});};this.SetDefaultValues = function () { this.Clear();};this.GetValues = function () {var ret = {}; this.dialog_controls.forEach(function( c) { ret[c.id] = c.GetValue();});return ret;};this.Validate = function ( ) {for(var i=0;i<me.dialog_controls.length;++i) if (!me.dialog_controls[i].Validate()) return false; return true;};this.layout = function ( ) {}};document.addEventListener("DOMContentLoaded", function(event) {var dlg = new Dialogv6411c56fc91bf();
+var hd = new Cdialoghandlerv6411c56fc91bf();
+hd.initdialog(dlg);dlg.addHandler(hd);window.dialoghandlerv6411c56fc91bf = hd;});</script>
+
+<aside class="s4 i8" id="dialogv6411c56fc91ce"><div class="z4"><div class="u4"><h2 class="v4" id="dialogv6411c56fc91ce__title"><span class="data-import">Import data</span><span style="display:none" class="data-import-errors">Import error</span></h2><div class="w4"><div class="w_"><div class="x_ j0"><div class="j4 m4 g8 "><textarea class="l4"  id="dialogv6411c56fc91ce_data" rows="5" cols="60"></textarea>
+<div class="c3"><div class="e3"></div><div class="f3"><label class="h3" for="dialogv6411c56fc91ce_data">Data</label></div><div class="g3"></div></div></div><div class="n4"><div id="hlp_dialogv6411c56fc91ce_data" class="e4 c4">"One of the following characters is used to separate data fields: tab, semicolon (;) or comma(,)" Sample: -50.5;-50.5</div></div></div><div class="x_ j0"><div class="o8">Load data from .csv file.</div><div class="ae"><input type="file" multiple id="dialogv6411c56fc91ce_from_file" name="from_file"><div class="w_"><div class="pc-file-list x_ g0"></div><div class="pc-file-actions x_ j0"><ul><li><button type="button" class="vb c2"><i class="material-icons">&#xe864;</i></button></li><li><button class="c2 g2" type="button" id="dialogv6411c56fc91ce_from_file_btn"><span class="f2 ">Browse</span></button>
+</li><li><div class="o8">Drag files here</div></li></ul></div></div></div><div class="n4"><div id="hlp_dialogv6411c56fc91ce_from_file" class="e4 c4"></div></div></div><div class="x_ j0"><div id="dialogv6411c56fc91ce_errors"  class="placeholder"></div></div></div></div><footer class="aa"><button class="c2" type="button" id="dialogv6411c56fc91ce_ok"><span class="f2 ">Import</span></button>
+<button class="c2" type="button" id="dialogv6411c56fc91ce_back"><span class="f2 ">Back</span></button>
+<button class="c2" type="button" id="dialogv6411c56fc91ce_cancel"><span class="f2 ">Cancel</span></button>
+</footer></div></div><div class="t4"></div></aside>
+<script>function DialogImportDatav6411c56fc91ce() {var me = this;me.id = "dialogv6411c56fc91ce";me.GetElement = function () { return document.getElementById( me.id ); };me.GetEventHandlerName = function () { return "dialoghandlerv6411c56fc91ce"; };this.ctrl = null; function getControl() { if ( !me.ctrl ) me.ctrl = PLANETCALC.dialog(me.GetElement()); return me.ctrl;};this.Show = function () { getControl().open(); };this.Hide = function () { getControl().close(); };this.dialog_controls = [new DialogInput("data", this, new ValidatorImport( new ValidatorNumber( true, true),new ValidatorNumber( true, true)),new ElementAccessorText()),new DialogInput("from_file", this, 0,new ElementAccessorFiles("server")),new DialogInput("errors", this, 0,new ElementAccessorDefault()),new DialogInput("ok", this, 0,new ElementAccessorButton(function(){dialoghandlerv6411c56fc91ce.oncommand('ok');})),new DialogInput("back", this, 0,new ElementAccessorButton(function(){dialoghandlerv6411c56fc91ce.oncommand('back');})),new DialogInput("cancel", this, 0,new ElementAccessorButton(function(){dialoghandlerv6411c56fc91ce.oncommand('cancel');}))];me.dialog_controls._all ={};me.dialog_controls.forEach( function( e ) { if (me[e.id]===undefined) me[e.id] = e; me.dialog_controls._all[e.id] = e;} );this.addHandler = function ( handler ) {this.dialog_controls.forEach(function(c) { c.addHandler( handler);});};this.SetValues = function ( values ) {this.dialog_controls.forEach(function(c) {if ( values[c.id]!==undefined ) { c.SetValue( values[c.id] ); }});};this.Clear = function ( ) {this.dialog_controls.forEach(function( c) { c.ResetValue();});};this.SetDefaultValues = function () { this.Clear();};this.GetValues = function () {var ret = {}; this.dialog_controls.forEach(function( c) { ret[c.id] = c.GetValue();});return ret;};this.Validate = function ( ) {for(var i=0;i<me.dialog_controls.length;++i) if (!me.dialog_controls[i].Validate()) return false; return true;};this.layout = function ( ) {}};document.addEventListener("DOMContentLoaded", function(event) {var dlg = new DialogImportDatav6411c56fc91ce();
+var hd = new DialogHandlerImportData(dialoghandlerv6411c56fc91bf,["x","y"]);
+hd.initdialog(dlg);dlg.addHandler(hd);window.dialoghandlerv6411c56fc91ce = hd;});</script>
+<script>function TableHandlerdialogv6411c56fad6d1_constraints( accessor ){var opts = { accessor:accessor, formatters : [{ name:"x",formatter:null}
+,{ name:"y",formatter:null}
+],adapter:null,table : document.getElementById("dialogv6411c56fad6d1_constraints"),dialog : dialoghandlerv6411c56fc91bf,import : dialoghandlerv6411c56fc91ce}; TableBaseHandler.call( this, opts );
+		};document.addEventListener("DOMContentLoaded", function(){TableHandlerdialogv6411c56fad6d1_constraints.prototype = Object.create(TableBaseHandler.prototype);TableHandlerdialogv6411c56fad6d1_constraints.prototype.constructor =TableHandlerdialogv6411c56fad6d1_constraints; var handler = new TableHandlerdialogv6411c56fad6d1_constraints(new InputTableHandler({"init":function() {return []; }}));window.tableHandler6411c56fadb71=handler;});</script>
+		
+		</div>
+		
+
+<div class="x_ j0"></div>
+<div class="x_ j0"><div class="e8"><div id="dialogv6411c56fad6d1__progress_" role="progressbar" class="c8 m0 t0"><div class="p0"></div><div class="q0"></div><div class="n0 r0"><span class="o0"></span></div><div class="n0 s0"><span class="o0"></span></div></div></div></div>
+<div class="x_ j0"><div></div><div class="n4 x"><div id="hlp_default_dialogv6411c56fad6d1" class="e4 c4"></div></div></div>
+	<div class="x_ j0"><div class="o8">Quadratic regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_quadratic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rquadratic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rquadratic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Aquadratic">&nbsp;</div></div><div class="x_ j0"><div class="o8">Cubic regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_cubic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rcubic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rcubic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Acubic">&nbsp;</div></div><div class="x_ j0"><div class="o8">4th order polynomial regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_pol4">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rpol4">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rpol4">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Apol4">&nbsp;</div></div><div class="x_ j0"><div class="o8">5th order polynomial regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_pol5">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rpol5">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rpol5">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Apol5">&nbsp;</div></div><div class="x_ j0"><div class="pc-output-value" id="dialogv6411c56fad6d1_linear">&nbsp;</div></div>
+
+
+
+
+<div class="x_ j0"><div class="o8">Logarithmic regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_logarithmic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rlogarithmic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rlogarithmic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Alogarithmic">&nbsp;</div></div><div class="x_ j0"><div class="o8">Hyperbolic regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_hyperbolic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rhyperbolic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rhyperbolic">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Ahyperbolic">&nbsp;</div></div><div class="x_ j0"><div class="o8">6th order polynomial regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_pol6">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rpol6">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rpol6">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Apol6">&nbsp;</div></div><div class="x_ j0"><div class="o8">7th order polynomial regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_pol7">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rpol7">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rpol7">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Apol7">&nbsp;</div></div><div class="x_ j0"><div class="o8">8th order polynomial regression</div><div class="pc-output-value" id="dialogv6411c56fad6d1_pol8">&nbsp;</div></div><div class="x_ a0"><div class="o8">Correlation coefficient</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_rpol8">&nbsp;</div></div><div class="x_ a0"><div class="o8">Coefficient of determination</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Rpol8">&nbsp;</div></div><div class="x_ a0"><div class="o8">Average relative error, %</div><div class="pc-output-value p8" id="dialogv6411c56fad6d1_Apol8">&nbsp;</div></div><div class="x_ j0" style="margin-top:30px; margin-left: 0px; width: 100%; "><div id="dialogv6411c56fad6d1_result_name" class="o8" style="margin-left: 30px;"></div><div id="dialogv6411c56fad6d1_result_big_msg" class="ke"><div class="me"><div class="ne">The file is very large. Browser slowdown may occur during loading and creation.</div><div class="re" aria-atomic="true"><button class="c2 se" type="button" id="dialogv6411c56fad6d1_result_download"><span class="f2 ">Download</span></button>
+<button type="button" class="c2 vb te"><i class="material-icons">&#xe5cd;</i></button></div></div></div>
+<div id="dialogv6411c56fad6d1_result_diagram" class="pc-graph" style="float: left;width: 45%; margin-left: 30px;"></div>
+<div id="dialogv6411c56fad6d1_result" class="pc-output-table" style="float: right;width: 45%;"></div>
+</div><div class="x_ j0"><div class="b2"><div class="pc-calc-footer"><div class="ba u8"></div></div></div></div></div><script>function Dialogv6411c56fad6d1() {var me = this;me.id = "dialogv6411c56fad6d1";me.GetElement = function () { return document.getElementById( me.id ); };me.GetEventHandlerName = function () { return "dialoghandlerv6411c56fad6d1"; };this.dialog_controls = [new DialogInput("xstring", this, 0,new ElementAccessorText()),new DialogInput("ystring", this, 0,new ElementAccessorText()),new DialogInput("constraints", this, 0,new ElementAccessorInputTable( window.tableHandler6411c56fadb71)),new DialogInput("approxlist", this, 0,new ElementAccessorCheckboxList(5,5)),new DialogInput("calculate", this, 0,new ElementAccessorOperation()),new DialogInput("_progress_", this, 0,new ElementAccessorDefault()),new DialogInput("", this, 0,new ElementAccessorDefault()),new DialogInput("precisionmeter", this, 0,new ElementAccessorPrecision(4)),new DialogInput("quadratic", this, 0,new ElementAccessorDefault()),new DialogInput("rquadratic", this, 0,new ElementAccessorOutput()),new DialogInput("Rquadratic", this, 0,new ElementAccessorOutput()),new DialogInput("Aquadratic", this, 0,new ElementAccessorOutput()),new DialogInput("cubic", this, 0,new ElementAccessorDefault()),new DialogInput("rcubic", this, 0,new ElementAccessorOutput()),new DialogInput("Rcubic", this, 0,new ElementAccessorOutput()),new DialogInput("Acubic", this, 0,new ElementAccessorOutput()),new DialogInput("pol4", this, 0,new ElementAccessorDefault()),new DialogInput("rpol4", this, 0,new ElementAccessorOutput()),new DialogInput("Rpol4", this, 0,new ElementAccessorOutput()),new DialogInput("Apol4", this, 0,new ElementAccessorOutput()),new DialogInput("pol5", this, 0,new ElementAccessorDefault()),new DialogInput("rpol5", this, 0,new ElementAccessorOutput()),new DialogInput("Rpol5", this, 0,new ElementAccessorOutput()),new DialogInput("Apol5", this, 0,new ElementAccessorOutput()),new DialogInput("linear", this, 0,new ElementAccessorDefault()),new DialogInput("rxy", this, 0,new ElementAccessorOutput()),new DialogInput("Rlinear", this, 0,new ElementAccessorOutput()),new DialogInput("Alinear", this, 0,new ElementAccessorOutput()),new DialogInput("logarithmic", this, 0,new ElementAccessorDefault()),new DialogInput("rlogarithmic", this, 0,new ElementAccessorOutput()),new DialogInput("Rlogarithmic", this, 0,new ElementAccessorOutput()),new DialogInput("Alogarithmic", this, 0,new ElementAccessorOutput()),new DialogInput("hyperbolic", this, 0,new ElementAccessorDefault()),new DialogInput("rhyperbolic", this, 0,new ElementAccessorOutput()),new DialogInput("Rhyperbolic", this, 0,new ElementAccessorOutput()),new DialogInput("Ahyperbolic", this, 0,new ElementAccessorOutput()),new DialogInput("pol6", this, 0,new ElementAccessorDefault()),new DialogInput("rpol6", this, 0,new ElementAccessorOutput()),new DialogInput("Rpol6", this, 0,new ElementAccessorOutput()),new DialogInput("Apol6", this, 0,new ElementAccessorOutput()),new DialogInput("pol7", this, 0,new ElementAccessorDefault()),new DialogInput("rpol7", this, 0,new ElementAccessorOutput()),new DialogInput("Rpol7", this, 0,new ElementAccessorOutput()),new DialogInput("Apol7", this, 0,new ElementAccessorOutput()),new DialogInput("pol8", this, 0,new ElementAccessorDefault()),new DialogInput("rpol8", this, 0,new ElementAccessorOutput()),new DialogInput("Rpol8", this, 0,new ElementAccessorOutput()),new DialogInput("Apol8", this, 0,new ElementAccessorOutput()),new DialogInput("result", this, 0,new ElementAccessorDefault())];me.dialog_controls._all ={};me.dialog_controls.forEach( function( e ) { if (me[e.id]===undefined) me[e.id] = e; me.dialog_controls._all[e.id] = e;} );this.addHandler = function ( handler ) {this.dialog_controls.forEach(function(c) { c.addHandler( handler);});};this.SetValues = function ( values ) {this.dialog_controls.forEach(function(c) {if ( values[c.id]!==undefined ) { c.SetValue( values[c.id] ); }});};this.Clear = function ( ) {this.dialog_controls.forEach(function( c) { c.ResetValue();});};this.SetDefaultValues = function () { this.Clear();};this.GetValues = function () {var ret = {}; this.dialog_controls.forEach(function( c) { ret[c.id] = c.GetValue();});return ret;};this.Validate = function ( ) {for(var i=0;i<me.dialog_controls.length;++i) if (!me.dialog_controls[i].Validate()) return false; return true;};this.layout = function ( ) {me.dialog_controls[7].elementAccessor.layout();}};document.addEventListener("DOMContentLoaded", function(event) {var dlg = new Dialogv6411c56fad6d1();
+var hd = new CalculatorHandler(new function () {
+var me = this;
+me.id = 8731;
+me.global = 1;
+var outputs = {};
+me.sinks={change:[],done:[]};
+me.startOnLoad = 1;
+me.infinite = 0;
+var inputs = {};
+var renderers = {};
+var recordsets = {};
+var diagrams = {};
+var handler, dialog, refreshTimer;var outer = this;me.adapter = { encoder:{"approxlist":function( v ) { return Object.keys(v).filter(function(e){return v[e];}).join(" ");}},decoder:{"approxlist":function(v) { var r={}; var a = v.split(" "); if ( a ) a.forEach( function(e){r[e]=1;}); return r; }}};me.timeout = 1500;
+me.auto = 0;
+me.init = function ( h, dlg ) { var o; handler=h;dialog =dlg;me.control = new CalcController(h,me.id);var n; var fn;n='constraints';if ( dlg[n] ) { inputs[n] = dlg[n]; }n='approxlist';if ( dlg[n] ) { inputs[n] = dlg[n]; }n='xstring';if ( dlg[n] ) { inputs[n] = dlg[n]; }n='ystring';if ( dlg[n] ) { inputs[n] = dlg[n]; }o = dlg.Rlinear;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.rxy;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Alinear;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.quadratic;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rquadratic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rquadratic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Aquadratic;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.cubic;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rcubic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rcubic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Acubic;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.logarithmic;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rlogarithmic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rlogarithmic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Alogarithmic;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.hyperbolic;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rhyperbolic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rhyperbolic;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Ahyperbolic;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.pol4;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rpol4;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rpol4;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Apol4;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.pol5;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rpol5;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rpol5;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Apol5;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.pol6;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rpol6;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rpol6;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Apol6;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.pol7;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rpol7;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rpol7;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Apol7;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.pol8;outputs[o.id] =o;o.formatter =new FormatterFormula();o = dlg.rpol8;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Rpol8;outputs[o.id] =o;o.formatter =new FormatterNumber( 4,0,0,"R" );o = dlg.Apol8;outputs[o.id] =o;o.formatter =new FormatterPersent( 2 );o = dlg.linear;outputs[o.id] =o;o.formatter =new FormatterFormula();n='result';fn='dialogv6411c56fad6d1_result';recordsets[n] = new Recordset("","__id__");renderers[n]= new RecordsetRendererC(fn,10,["export"]);
+ renderers[n].name = "Results";renderers[n].AddColumn("i", "i", new RecordFieldFormatter(new FormatterNumber( 0,0,0,"R" )), '', 0,{"interpolate":"cardinal","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("x", "x", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 1,{"interpolate":"cardinal","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("y", "y", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 9,{"interpolate":"cardinal","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ylinear", "Linear regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("yquadratic", "Quadratic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ycubic", "Cubic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ylogarithmic", "Logarithmic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("yhyperbolic", "Hyperbolic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ypol4", "4th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ypol5", "5th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ypol6", "6th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ypol7", "7th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+renderers[n].AddColumn("ypol8", "8th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n] = new BarDiagram(fn+'_diagram',{"y_axis_type":"default","scale_log_base":10,"scale_power_exponent":2,"aspect_ratio":"4:3","x_axis_position":"bottom","y_axis_position":"left","x_center_zero":0,"y_center_zero":0,"page_size":10,"transpose_table":0,"graphics_scale":"xy","bar_width":100});diagrams[n].Header.AddColumn("x", "x", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 1,{"interpolate":"cardinal","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("y", "y", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 9,{"interpolate":"cardinal","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ylinear", "Linear regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("yquadratic", "Quadratic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ycubic", "Cubic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ylogarithmic", "Logarithmic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("yhyperbolic", "Hyperbolic regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ypol4", "4th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ypol5", "5th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ypol6", "6th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ypol7", "7th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+diagrams[n].Header.AddColumn("ypol8", "8th order polynomial regression", new RecordFieldFormatter(new FormatterNumber( 4,0,0,"R" )), '', 2,{"interpolate":"monotone","line_color":"primary","line_markup":0},1);
+me.tables = renderers;me.diagrams = diagrams;handler.onReady();};
+me.stop = function() {};
+me.start = function() {handler.onStart();
+var inputValues = me.getInputValues();me.control.onCalculate( inputValues );};me.getInputs = function() {
+		return inputs;
+	};
+	function objectValues( a, o ) {
+		for(var n in o) {
+			a.push( o[n] );
+	}
+	}
+	me.getOutputs = function() {
+		var ret = [];
+		objectValues( ret, outputs );
+		objectValues( ret, diagrams );
+		objectValues( ret, renderers );
+	return ret;
+	};
+	me.getInputValues = function() {
+		var r = {};
+		for( var n in inputs) {
+			r[n] = inputs[n].GetValue();
+		}
+		return r;
+	};
+me.setResult = function( res, done ) {recordsets.result.Clear();recordsets.result.LoadFromArray( res.result);if (renderers.result) {renderers.result.Render( recordsets.result);} if ( diagrams.result) { diagrams.result.Render(res.result ); }outputs.Rlinear.SetValue(res.Rlinear);outputs.rxy.SetValue(res.rxy);outputs.Alinear.SetValue(res.Alinear);outputs.quadratic.SetValue(res.quadratic);outputs.rquadratic.SetValue(res.rquadratic);outputs.Rquadratic.SetValue(res.Rquadratic);outputs.Aquadratic.SetValue(res.Aquadratic);outputs.cubic.SetValue(res.cubic);outputs.rcubic.SetValue(res.rcubic);outputs.Rcubic.SetValue(res.Rcubic);outputs.Acubic.SetValue(res.Acubic);outputs.logarithmic.SetValue(res.logarithmic);outputs.rlogarithmic.SetValue(res.rlogarithmic);outputs.Rlogarithmic.SetValue(res.Rlogarithmic);outputs.Alogarithmic.SetValue(res.Alogarithmic);outputs.hyperbolic.SetValue(res.hyperbolic);outputs.rhyperbolic.SetValue(res.rhyperbolic);outputs.Rhyperbolic.SetValue(res.Rhyperbolic);outputs.Ahyperbolic.SetValue(res.Ahyperbolic);outputs.pol4.SetValue(res.pol4);outputs.rpol4.SetValue(res.rpol4);outputs.Rpol4.SetValue(res.Rpol4);outputs.Apol4.SetValue(res.Apol4);outputs.pol5.SetValue(res.pol5);outputs.rpol5.SetValue(res.rpol5);outputs.Rpol5.SetValue(res.Rpol5);outputs.Apol5.SetValue(res.Apol5);outputs.pol6.SetValue(res.pol6);outputs.rpol6.SetValue(res.rpol6);outputs.Rpol6.SetValue(res.Rpol6);outputs.Apol6.SetValue(res.Apol6);outputs.pol7.SetValue(res.pol7);outputs.rpol7.SetValue(res.rpol7);outputs.Rpol7.SetValue(res.Rpol7);outputs.Apol7.SetValue(res.Apol7);outputs.pol8.SetValue(res.pol8);outputs.rpol8.SetValue(res.rpol8);outputs.Rpol8.SetValue(res.Rpol8);outputs.Apol8.SetValue(res.Apol8);outputs.linear.SetValue(res.linear);if (done) { handler.onStop();if ( PCF.requestFormulaUpdate( false ) ) { var mjx = window.MathJax; mjx.Hub.Queue(["Typeset",mjx.Hub]);};}};me.resetDisplay = function ( ) {if ( renderers.result) renderers.result.Header.RestoreColumns();
+if ( diagrams.result) diagrams.result.Header.RestoreColumns();
+
+};
+},{calculate:"Calculate", stop:"Stop"});;
+hd.initdialog(dlg);dlg.addHandler(hd);window.dialoghandlerv6411c56fad6d1 = hd;});</script></div>
+<p></div></div></div></div><div class="social social-share ee"><div class="share-mode"><div class="t9 share-switch"><div class="x6"><div class="z6"></div><div class="b7"><div class="_7"><input class="a7" type="checkbox" id="share_data_md"/></div></div></div> <label for="share_data_md">&nbsp;share my calculation</label></div><div class="share_data_msg z"></div></div><div class="share-buttons"><a class="pc-social-share oc pc" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fplanetcalc.com%2F8735%2F" rel="noopener nofollow" data-origin="pc"><span class="material-icons">&#xf301;</span></a><a class="pc-social-share oc qc" target="_blank" href="https://twitter.com/intent/tweet?text=Online%20calculator%3A%20Curve%20fitting%20using%20unconstrained%20and%20constrained%20linear%20least%20squares%20methods&amp;url=https%3A%2F%2Fplanetcalc.com%2F8735%2F" rel="noopener nofollow" data-origin="qc"><span class="material-icons">&#xf303;</span></a><a class="pc-social-share oc r_" href="mailto:?subject=Online%20calculator%3A%20Curve%20fitting%20using%20unconstrained%20and%20constrained%20linear%20least%20squares%20methods&body=https%3A%2F%2Fplanetcalc.com%2F8735%2F" rel="noopener nofollow" data-origin="r_"><span class="material-icons">&#xe0e1;</span></a></div><div class="share-url-text x"><div class="j4"><input class="l4" type="text" value="" readonly/><div class="_3"></div></div><div class="n4"><div id="share_data_md_hlp" class="e4 c4">Everyone who receives the link will be able to view this calculation</div></div><button class="c2 mc" type="button" ><span class="f2 ">Copy</span></button>
+<div style="clear:both"></div></div></div>	<script>
+		function showAvInitials( i ) {
+			i.style.display="none";
+			var d = i.parentNode;
+			var bg = d.getAttribute("data-bg");
+			d.style.backgroundColor = bg;
+			var e = d.getElementsByClassName("tb");
+			if ( e.length ) {
+				e[0].style.display="inline";
+			}
+		}
+		function CommentAvatarFormatter( formatter ) {
+			var colors = [ "#D32F2F", "#C2185B", "#7B1FA2", "#512DA8", "#303F9F", "#1976D2", "#0288D1", "#0097A7", "#00796B", "#388E3C", "#689F38", "#AFB42B", "#FBC02D", "#FFA000", "#F57C00", "#E64A19", "#5D4037", "#455A64"];
+	this.Format = function ( colname, record ) {
+		var ret = '<div class="' + "sb" + '"';
+			var name = record.nickname;
+			if ( !name ) name = 'Unknown'; else name = name.toString();
+			var hash = 0;
+			for(var i =0 ;i<name.length;++i) {
+				hash+=name.charCodeAt(i);
+			}
+			var color = colors[ hash%colors.length];
+			var namearr = name.split(' ');
+			var abbr ='';
+			for(var i=0;i<namearr.length && i<2 ;++i) {
+				if ( namearr[i].length) {
+					abbr+=namearr[i].substr(0,1);
+				}
+			}
+		if ( record.photo ) {
+			ret+='data-bg="' + color + '"><img src="' + record.photo + '" alt="' + (record.nickname && record.nickname.replace?record.nickname.replace('"',"'"):'') + '" onerror="showAvInitials(this);">';
+		} else {
+			ret+=' style="background-color:' + color + '">';
+		}
+		ret+='<span class="' + "tb" + '"' + (record.photo?' style="display:none;"':'') + '>' + abbr.toUpperCase()  + '</span>';
+		ret+='</div>';
+		return ret;
+	}
+}</script>
+</div></div></div><script>
+var shiftMax = 0;
+document.addEventListener('DOMContentLoaded', function(){ 
+	showStoreRef();
+	
+var sharer = new PSS.Sharer("my calculation",'Calculation data size is %1. To share your calculation please <a class="save_data_link" href="#">save the calculation data</a> to our server storage.');});
+
+
+function getMobileOperatingSystem() {
+	var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+	if (/android/i.test(userAgent)) {
+		return "Android";
+    }
+    if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        return "iOS";
+    }
+    return "unknown";
+}
+function showStoreRef() {
+	if ( $(".wb").length && !$(".wb").is(":visible") ) {
+	switch( getMobileOperatingSystem()) {
+	case 'Android':{
+		$(".pc-storeref-android").removeClass("cc");
+	} break;
+	case 'iOS':{
+		$(".pc-storeref-ios").removeClass("cc");
+	} break;
+	}	
+}
+var savedData = [];function forEachCalc( func ) {
+	if ( window.CurrentPageCalculators ) {
+		for( var i =0;i<window.CurrentPageCalculators.length;++i ) {
+			func( window.CurrentPageCalculators[i] );
+		}
+	}
+}
+
+forEachCalc( function ( calc ) {
+	var sd = savedData[calc.CalculatorID ];
+	if ( sd ) {
+		calc.setProfile(sd,false);
+}});
+
+}
+</script>
+</div><!-- container-->
+	<div class="horizontal_divider"></div>
+	
+<script>if ( PCL===undefined ) {var PCL = {};}
+	PCL.language_id='en';
+PCL.minutes_ago_one="%1 minute ago";PCL.minutes_ago_other="%1 minutes ago";PCL.hours_ago_one="%1 hour ago";PCL.hours_ago_other="%1 hours ago";PCL.days_ago_one="%1 day ago";PCL.days_ago_other="%1 days ago";PCL.months_ago_one="%1 month ago";PCL.months_ago_other="%1 months ago";PCL.years_ago_one="%1 year ago";PCL.years_ago_other="%1 years ago";PCL.all="All";PCL.x_of_y="%1 of %2";PCL.items_per_page="Items per page";PCL.next_page="Next page";PCL.prev_page="Previous page";PCL.err_data_too_long="Calculation data size is %1. Your calculation data is too large. We allow %2 only.";PCL.userdata="The caclulation has been saved %2 by <a href=\"/personal/authorinfo/?id=%3\" rel=\"nofollow\">%1</a>";	PCL.yes="yes";PCL.no="no";	PCL.parser_error_1="Unexpected character %token% (%decorated%). Expected: %expected%.";PCL.parser_error_2="Unexpected symbol %token% (%decorated%). Expected: %expected%.";PCL.parser_error_3="Expression is incomplete. Expected: %expected%.";	PCL.digits_afterdot="Digits after the decimal point: %1";	PCL.items_selected="Items selected: %1";	PCL.err_must_be_not_empty="Must not be empty.";	PCL.err_must_be_at_least_x_chars_long="Must be at least %1 characters long.";PCL.err_must_be_less_or_equal_x_chars="Must be fewer than %1 characters long.";	PCL.err_invalid_number="Number expected.";PCL.err_invalid_positive_number="Positive number expected.";PCL.err_invalid_integer_number="Integer expected.";PCL.err_invalid_integer_positive_number="Positive integer expected.";PCL.err_complex_not_allowed="Complex number is not allowed.";PCL.err_fraction_not_allowed="Fraction is not allowed.";	PCL.err_file_size="The %2 file size exceeds the maximum allowed limit: %1.";PCL.err_file_type="Invalid type of file: %1.";PCL.file="File";PCL.size="Size";PCL.err_save_long_file="You are trying to save a %1 file. Unfortunately, the free version only supports %2.";		PCL.pluralCodes = ['zero','one','two','few','many'];
+	PCL.ordinalIR = function( n ) {
+		var i = n, w=0,f=0,t=0,v=0;
+		if ((n%10)==1 && (n%100)!=11) return PCL.pluralCodes[1];if ((n%10)==2 && (n%100)!=12) return PCL.pluralCodes[2];if ((n%10)==3 && (n%100)!=13) return PCL.pluralCodes[3];return "other";	}
+	PCL.cardinalIR = function( n ) {
+		var i = n, w=0,f=0,t=0,v=0;
+		if (v==0 && i==1) return PCL.pluralCodes[1];return "other";	}
+	PCL.getOrdinal = function(n){
+		return PCL['ordinal_' + PCL.ordinalIR( n )];
+	}
+</script>
+<script src="../../ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script><script src="../plugins/mathjax/MathJax02e7.js?config=TeX-AMS-MML_HTMLorMML&amp;locale=en"></script><script src="../../d3js.org/d3.v4.min.js"></script><script src="../plugins/bignumber/bignumber.min.js"></script><script src="../lib/min/4231/pla_a_4231.js"></script><script id="Lib220406">"use strict";self.Planetcalc=new function(){var Dt=this;this.Lib9081=new function(){this.c_valid=0,this.c_nonsquare=-1,this.c_singular=-2,this.c_wrongdimensions=-3,this.c_methoderror=-4,this.create=function(t){for(var p=this,o=[],e=0;e<t.length;++e){for(var r=[],i=0;i<t[e].length;++i){var n=t[e][i];r.push(BigNumber.isBigNumber(n)?BigNumber(n.dp()<52?n:n.toFixed(52)):BigNumber(n.toString()))}o.push(r)}return o.columns=o[0].length,o.rows=o.length,o.minor=t.minor||function(t,o){for(var e=[],r=0;r<this.length;++r)if(r!=t){for(var i=this[r],n=[],a=0;a<i.length;++a)a!=o&&n.push(i[a]);e.push(n)}return p.create(e)},o.switchRows=t.switchRows||function(t,o){var e=p.create(this),r=e[t];return e[t]=e[o],e[o]=r,e},o.mulRow=t.mulRow||function(t,o){var e=p.create(this);return e[t]=e[t].map(function(t){return t.times(o)}),e},o.addRow=t.addRow||function(t,e,r){var i=p.create(this);return i[t]=i[t].map(function(t,o){return i[e][o].times(r).plus(t)}),i},o.splitA=t.splitA||function(t){t=t||1;for(var o=[],e=0;e<this.length;++e){for(var r=this[e],i=[],n=0;n<r.length-t;++n)i.push(r[n]);o.push(i)}return p.create(o)},o.splitB=t.splitB||function(t){t=t||1;for(var o=[],e=0;e<this.length;++e){for(var r=this[e],i=[],n=r.length-t;n<r.length;++n)i.push(r[n]);o.push(i)}return p.create(o)},o.addToRight=t.addToRight||function(t){for(var o=[],e=this.columns,r=this.rows,i=t[0].length,n=t.length,a=e+i,l=Math.max(r,n),s=0;s<l;++s){for(var u=[],c=0;c<a;++c)c<e?s<r?u.push(this[s][c]):u.push(0):s<n?u.push(t[s][c-e]):u.push(0);o.push(u)}return p.create(o)},o.addToBottom=t.addToBottom||function(t){for(var o=[],e=this.columns,r=this.rows,i=t[0].length,n=t.length,a=Math.max(e,i),l=r+n,s=0;s<l;++s){for(var u=[],c=0;c<a;++c)s<r?c<e?u.push(this[s][c]):u.push(0):c<i?u.push(t[s-r][c]):u.push(0);o.push(u)}return p.create(o)},o.calcMultiplication=t.calcMultiplication||function(t){var o=[],e=this.columns,r=t.length;if(e!=r)throw p.c_wrongdimensions;for(var i=this.rows,n=t[0].length,a=0;a<i;++a){for(var l=[],s=0;s<n;++s){for(var u=BigNumber(0),c=0;c<r;++c)u=this[a][c].times(t[c][s]).plus(u);l.push(u)}o.push(l)}return p.create(o)},o.calcAddition=t.calcAddition||function(t){var o=[],e=this.columns,r=this.rows,i=t[0].length,n=t.length;if(e!=i||r!=n)throw p.c_wrongdimensions;for(var a=0;a<r;++a){for(var l=[],s=0;s<e;++s){var u=this[a][s].plus(t[a][s]);l.push(u)}o.push(l)}return p.create(o)},o.calcSubtraction=t.calcSubtraction||function(t){var o=[],e=this.columns,r=this.rows,i=t[0].length,n=t.length;if(e!=i||r!=n)throw p.c_wrongdimensions;for(var a=0;a<r;++a){for(var l=[],s=0;s<e;++s){var u=this[a][s].minus(t[a][s]);l.push(u)}o.push(l)}return p.create(o)},o.calcTransponent=t.calcTransponent||function(){for(var t=[],o=this.columns,e=0;e<o;++e){for(var r=[],i=this.rows,n=0;n<i;++n)r.push(this[n][e]);t.push(r)}return p.create(t)},o.calcScalar=t.calcScalar||function(t){for(var o=[],e=this.columns,r=this.rows,i=0;i<r;++i){for(var n=[],a=0;a<e;++a)n.push(this[i][a].times(t));o.push(n)}return p.create(o)},o.calcInverse=t.calcInverse||function(){var t=this.columns,o=this.rows;if(t!=o)throw p.c_nonsquare;for(var e=this.addToRight(p.generateE(o)),r=0;r<o;++r){var i=e[r][r];if(i.abs().lt(BigNumber("1e-52"))){for(var n=!1,a=r+1;a<o;++a)if((i=e[a][r]).abs().gt(BigNumber("1e-52"))){n=!0;break}if(!n)throw function(t){for(var o=0;o<t.rows;++o){for(var e="",r=0;r<t.columns;++r)e+=t[o][r].toFixed()+" ";console.log(e)}}(e),p.c_singular;e=e.switchRows(r,a)}for(e=e.mulRow(r,BigNumber(1).div(i)),a=0;a<o;++a)a!=r&&(i=e[a][r],e=e.addRow(a,r,i.negated()))}return e.splitB(o)},o},this.makeColumn=function(t){for(var o=[],e=0;e<t.length;++e){var r=t[e],i=[];i.push(r),o.push(i)}return o},this.generateE=function(t){for(var o=[],e=0;e<t;++e){for(var r=[],i=0;i<t;++i)r.push(e==i?1:0);o.push(r)}return o}},this.Lib8731=new function(){var o=Boolean(-1!==parseFloat(.5).toString().indexOf(",")),e=function(t){return Math.floor(t)!==t&&t.toString().split(o?",":".")[1].length||0};function a(t){var o=e(t);return PCR.rational(Math.round(t*Math.pow(10,o)),Math.pow(10,o))}function f(t,o,e){return t[o][e]}function g(t){return t[0].length}function m(t){return t.length}function h(t,o){o.add?t.push(o.add(0)):t.push(o)}function s(t){for(var o=[],e=0;e<t.length;++e){for(var r=[],i=0;i<t[e].length;++i){var n=f(t,e,i);n.add||(n=a(n)),r.push(n.add(0))}o.push(r)}return o}function u(t,o,e){for(var r=[],i=0;i<t.length;++i)if(i!=o){for(var n=t[i],a=[],l=0;l<n.length;++l)l!=e&&h(a,n[l]);r.push(a)}return r}function d(t,o){t=t.mul?t:a(t),o=o.mul?o:a(o);return t.mul(o)}this.c_valid=0,this.c_nonsquare=-1,this.c_singular=-2,this.c_wrongdimensions=-3,this.c_methoderror=-4,this.switchRows=function(t,o,e){var r=t[o];t[o]=t[e],t[e]=r},this.mulRow=function(t,o,e){t[o]=t[o].map(function(t){return t.mul(e)})},this.addRow=function(e,t,r,i){e[t]=e[t].map(function(t,o){return t.add(e[r][o].mul(i))})},this.splitA=function(t,o){o=o||1;for(var e=[],r=0;r<t.length;++r){for(var i=t[r],n=[],a=0;a<i.length-o;++a)h(n,i[a]);e.push(n)}return e},this.splitB=function(t,o){o=o||1;for(var e=[],r=0;r<t.length;++r){for(var i=t[r],n=[],a=i.length-o;a<i.length;++a)h(n,i[a]);e.push(n)}return e},this.makeColumn=function(t){for(var o=[],e=0;e<t.length;++e){var r=[];h(r,t[e]),o.push(r)}return o},this.generateE=function(t){for(var o=[],e=0;e<t;++e){for(var r=[],i=0;i<t;++i)r.push(e==i?1:0);o.push(r)}return o},this.addToRight=function(t,o){for(var e=[],r=t[0].length,i=o[0].length,n=t.length,a=o.length,l=r+i,s=Math.max(n,a),u=0;u<s;++u){for(var c=[],p=0;p<l;++p)h(c,p<r?u<n?t[u][p]:0:u<a?o[u][p-r]:0);e.push(c)}return e},this.addToBottom=function(t,o){for(var e=[],r=t[0].length,i=o[0].length,n=t.length,a=o.length,l=Math.max(r,i),s=n+a,u=0;u<s;++u){for(var c=[],p=0;p<l;++p)h(c,u<n?p<r?t[u][p]:0:p<i?o[u-n][p]:0);e.push(c)}return e},this.calcMultiplication=function(t,o){var e=[],r=g(t),i=m(t),n=g(o),a=m(o);if(r!=a)throw this.c_wrongdimensions;for(var l=0;l<i;++l){for(var s=[],u=0;u<n;++u){for(var c=PCR.rational(0),p=0;p<a;++p)c=c.add(d(f(t,l,p),f(o,p,u)));h(s,c)}e.push(s)}return e},this.calcAddition=function(t,o){var e=[],r=g(t),i=m(t),n=g(o),a=m(o);if(r!=n||i!=a)throw this.c_wrongdimensions;for(var l=0;l<i;++l){for(var s=[],u=0;u<r;++u)h(s,PCR.rational(f(t,l,u)).add(f(o,l,u)));e.push(s)}return e},this.calcSubtraction=function(t,o){var e=[],r=g(t),i=m(t),n=g(o),a=m(o);if(r!=n||i!=a)throw this.c_wrongdimensions;for(var l=0;l<i;++l){for(var s=[],u=0;u<r;++u)h(s,PCR.rational(f(t,l,u)).sub(f(o,l,u)));e.push(s)}return e},this.calcTransponent=function(t){for(var o=[],e=g(t),r=0;r<e;++r){for(var i=[],n=m(t),a=0;a<n;++a)h(i,f(t,a,r));o.push(i)}return o},this.calcScalar=function(t,o){for(var e=[],r=g(t),i=m(t),n=0;n<i;++n){for(var a=[],l=0;l<r;++l)h(a,d(f(t,n,l),o));e.push(a)}return e},this.calcDeterminant=function(t){if(g(t)!=m(t))throw this.c_nonsquare;if(1==t.length)return f(t,0,0);if(2==t.length)return d(f(t,0,0),f(t,1,1)).sub(d(f(t,0,1),f(t,1,0)));for(var o=PCR.rational(0),e=g(t),r=0;r<e;++r)o=o.add(d(d(Math.pow(-1,r),f(t,0,r)),this.calcDeterminant(u(t,0,r))));return o},this.calcInverseSlow=function(t){var o=g(t),e=m(t);if(o!=e)throw this.c_nonsquare;var r=this.calcDeterminant(t);if(r.isZero())throw this.c_singular;for(var i=[],n=0;n<e;++n){for(var a=[],l=0;l<o;++l)h(a,d(this.calcDeterminant(u(t,n,l)),Math.pow(-1,n+l)));i.push(a)}var s=this.calcTransponent(i);return this.calcScalar(s,PCR.rational(1,1).div(r))},this.calcInverse=function(t){var o=g(t),e=m(t);if(o!=e)throw this.c_nonsquare;for(var r=this.addToRight(s(t),s(this.generateE(e))),i=0;i<e;++i){var n=f(r,i,i);if(n.isZero()){for(var a=!1,l=i+1;l<e;++l)if(!(n=f(r,l,i)).isZero()){a=!0;break}if(!a)throw this.c_singular;this.switchRows(r,i,l)}this.mulRow(r,i,PCR.rational(1).div(n));for(l=0;l<e;++l)l!=i&&(n=f(r,l,i),this.addRow(r,l,i,n.mul(-1)))}return this.splitB(r,e)};this.calcInverseNewton=function(t,o){var e=g(t),r=m(t);if(e!=r)throw this.c_nonsquare;for(var i=PCR.rational(-1),n=0;n<r;++n){for(var a=PCR.rational(0),l=0;l<e;++l)a=a.add(PCR.rational(f(t,n,l)).abs());a.gt(i)&&(i=a)}for(var s=PCR.rational(-1),n=0;n<e;++n){for(var u=PCR.rational(0),l=0;l<r;++l)u=u.add(PCR.rational(f(t,l,n)).abs());u.gt(s)&&(s=u)}for(var c=PCR.rational(1).div(i.mul(s)),p=function(t){for(var o=[],e=0;e<t.length;++e){for(var r=[],i=0;i<t[e].length;++i){var n=f(t,e,i);r.push(n.toReal())}o.push(r)}return o}(p=this.calcScalar(this.calcTransponent(t),c)),h=100;h--;){console.log("step "+(1e3-h)+" matrix B:"),function(t){for(var o=g(t),e=m(t),r=0;r<e;++r){for(var i="",n=0;n<o;++n)i+=PCR.rational(f(t,r,n)).toFixed(6)+" ";console.log(i)}}(p);var d=this.calcSubtraction(this.generateE(r),this.calcMultiplication(p,t));if(function(t,o){for(var e=!0,r=g(t),i=m(t),n=0;n<i;++n){for(var a=0;a<r&&(e=PCR.rational(f(t,n,a)).abs().lt(Math.pow(10,-(o+1))));++a);if(!e)break}return e}(d,o))break;p=this.calcMultiplication(this.calcAddition(this.generateE(r),d),p)}if(0==h)throw this.c_methoderror;return p}},this.Calc8731=function(h,d,t,o,e,r,i,n,a,l,s,u,c,p,f,g,m,y,v,S,x,V,b,w,R,D,A,q,C,F,M,_,B,P,T,N,U,W,k,z,G,L,E,I,X,H){var Z=[];o.length&&(Z=(Z=o.split(" ")).filter(function(t){return!!t.length}).map(function(t){return Number(t.replace(",","."))}));var Q=(Q=e.split(" ")).filter(function(t){return!!t.length}).map(function(t){return Number(t.replace(",","."))});if(0===Z.length)for(var Y=0;Y<Q.length;++Y)Z.push(Y);var O=Z.length;if(0===Q.length)throw{source:"ystring",message:d.yempty};if(Q.length!=Z.length)throw{source:"ystring",message:d.nomatch};o=Z.some(function(t){return 0===t});if(o&&t.dohyperbolic)throw{source:"xstring",message:d.nohyperzero};if(o&&t.dologarithmic)throw{source:"xstring",message:d.nologzero};e=h.map(function(t){return t.x});if(e.length){if((o=e.some(function(t){return 0===t}))&&t.dohyperbolic)throw{source:"constraints",message:d.nohyperzero};if(o&&t.dologarithmic)throw{source:"constraints",message:d.nologzero}}for(Y=Z.length-1;0<=Y;Y--)for(var j,J,K=1;K<=Y;K++)Z[K-1]>Z[K]&&(j=Z[K-1],J=Q[K-1],Z[K-1]=Z[K],Q[K-1]=Q[K],Z[K]=j,Q[K]=J);function $(t,o){var e=[];return t.forEach(function(t){e.push(o(t))}),e}var tt=Dt.Lib9081;function ot(t,o){this.type=t,this.rowGenerator=o,this.As=[],this.stat=[]}ot.prototype.type2conerror=function(t){switch(t){case"linear":return"noconlinear";case"quadratic":return"noconquadratic";case"cubic":return"noconcubic";case"logarithmic":return"noconlog";case"hyperbolic":return"noconhype";case"pol4":return"noconpol4";case"pol5":return"noconpol5";case"pol6":return"noconpol6";case"pol7":return"noconpol7";case"pol8":return"noconpol8";default:throw{source:"constraints",message:"Unknown approximation type"}}},ot.prototype.solveUnconstrained=function(t,o){var e=$(t,this.rowGenerator);this.As=(t=e,e=o,(o=tt.create(t).calcTransponent()).calcMultiplication(t).calcInverse().calcMultiplication(o).calcMultiplication(e))},ot.prototype.solveConstrained=function(t,o,e,r){try{var i=$(t,this.rowGenerator),n=$(o,this.rowGenerator);this.As=(a=i,l=n,s=e,u=r,c=tt.create(a),p=tt.create(l),c=c.calcTransponent(),p=p.calcTransponent(),l=c.calcMultiplication(a).calcScalar(2).addToRight(p).addToBottom(l).calcInverse(),u=c.calcMultiplication(s).calcScalar(2).addToBottom(u),l.calcMultiplication(u)),this.As.length=this.As.length-h.length}catch(t){throw-2==t?{source:"constraints",message:d[this.type2conerror(this.type)]}:t}var a,l,s,u,c,p},ot.prototype.coefs=function(){var t=this.As.map(function(t){return t[0]});return t.reverse(),t},ot.prototype.getValue=function(t){return tt.create([this.rowGenerator(t)]).calcMultiplication(this.As)[0][0]},ot.prototype.getValueWithStat=function(t){t=tt.create([this.rowGenerator(t)]).calcMultiplication(this.As)[0][0];return this.stat.push(t),t},ot.prototype.getStat=function(){return this.stat.map(function(t){return t.toFixed(ht)})};var et=t.dolinear?new ot("linear",function(t){var o=[];return o.push(1),o.push(t),o}):null,rt=t.doquadratic?new ot("quadratic",function(t){var o=[];return o.push(1),o.push(t),o.push(t*t),o}):null,it=t.docubic?new ot("cubic",function(t){var o=[];return o.push(1),o.push(t),o.push(t*t),o.push(t*t*t),o}):null,nt=t.dologarithmic?new ot("logarithmic",function(t){var o=[];return o.push(1),o.push(Math.log(t)),o}):null,at=t.dohyperbolic?new ot("hyperbolic",function(t){var o=[];return o.push(1),o.push(1/t),o}):null,lt=t.dopol4?new ot("pol4",function(t){var o=[];return o.push(1),o.push(t),o.push(t*t),o.push(t*t*t),o.push(t*t*t*t),o}):null,st=t.dopol5?new ot("pol5",function(t){var o=[];return o.push(1),o.push(t),o.push(t*t),o.push(t*t*t),o.push(t*t*t*t),o.push(t*t*t*t*t),o}):null,ut=t.dopol6?new ot("pol6",function(t){var o=[];return o.push(1),o.push(t),o.push(t*t),o.push(t*t*t),o.push(t*t*t*t),o.push(t*t*t*t*t),o.push(t*t*t*t*t*t),o}):null,ct=t.dopol7?new ot("pol7",function(t){var o=[];return o.push(1),o.push(t),o.push(t*t),o.push(t*t*t),o.push(t*t*t*t),o.push(t*t*t*t*t),o.push(t*t*t*t*t*t),o.push(t*t*t*t*t*t*t),o}):null,pt=t.dopol8?new ot("pol8",function(t){var o=[];return o.push(1),o.push(t),o.push(t*t),o.push(t*t*t),o.push(t*t*t*t),o.push(t*t*t*t*t),o.push(t*t*t*t*t*t),o.push(t*t*t*t*t*t*t),o.push(t*t*t*t*t*t*t*t),o}):null,ht=(ht=PCF.getCalcPrecision())||4,o=tt.makeColumn(Q);function dt(t){return((t.gte?t.gte(0):0<=t)?"+":"-")+(t.abs?t.abs():Math.abs(t)).toFixed(ht)}e.length?(t=tt.makeColumn(h.map(function(t){return t.y})),et&&et.solveConstrained(Z,e,o,t),rt&&rt.solveConstrained(Z,e,o,t),it&&it.solveConstrained(Z,e,o,t),nt&&nt.solveConstrained(Z,e,o,t),at&&at.solveConstrained(Z,e,o,t),lt&&lt.solveConstrained(Z,e,o,t),st&&st.solveConstrained(Z,e,o,t),ut&&ut.solveConstrained(Z,e,o,t),ct&&ct.solveConstrained(Z,e,o,t),pt&&pt.solveConstrained(Z,e,o,t)):(et&&et.solveUnconstrained(Z,o),rt&&rt.solveUnconstrained(Z,o),it&&it.solveUnconstrained(Z,o),nt&&nt.solveUnconstrained(Z,o),at&&at.solveUnconstrained(Z,o),lt&&lt.solveUnconstrained(Z,o),st&&st.solveUnconstrained(Z,o),ut&&ut.solveUnconstrained(Z,o),ct&&ct.solveUnconstrained(Z,o),pt&&pt.solveUnconstrained(Z,o)),et&&X.SetValue("y="+et.coefs()[0].toFixed(ht)+"x"+dt(et.coefs()[1])),rt&&a.SetValue("y="+rt.coefs()[0].toFixed(ht)+"x^2"+dt(rt.coefs()[1])+"x"+dt(rt.coefs()[2])),it&&c.SetValue("y="+it.coefs()[0].toFixed(ht)+"x^3"+dt(it.coefs()[1])+"x^2"+dt(it.coefs()[2])+"x"+dt(it.coefs()[3])),lt&&R.SetValue("y="+lt.coefs()[0].toFixed(ht)+"x^4"+dt(lt.coefs()[1])+"x^3"+dt(lt.coefs()[2])+"x^2"+dt(lt.coefs()[3])+"x"+dt(lt.coefs()[4])),st&&C.SetValue("y="+st.coefs()[0].toFixed(ht)+"x^5"+dt(st.coefs()[1])+"x^4"+dt(st.coefs()[2])+"x^3"+dt(st.coefs()[3])+"x^2"+dt(st.coefs()[4])+"x"+dt(st.coefs()[5])),ut&&B.SetValue("y="+ut.coefs()[0].toFixed(ht)+"x^6"+dt(ut.coefs()[1])+"x^5"+dt(ut.coefs()[2])+"x^4"+dt(ut.coefs()[3])+"x^3"+dt(ut.coefs()[4])+"x^2"+dt(ut.coefs()[5])+"x"+dt(ut.coefs()[6])),ct&&U.SetValue("y="+ct.coefs()[0].toFixed(ht)+"x^7"+dt(ct.coefs()[1])+"x^6"+dt(ct.coefs()[2])+"x^5"+dt(ct.coefs()[3])+"x^4"+dt(ct.coefs()[4])+"x^3"+dt(ct.coefs()[5])+"x^2"+dt(ct.coefs()[6])+"x"+dt(ct.coefs()[7])),pt&&G.SetValue("y="+pt.coefs()[0].toFixed(ht)+"x^8"+dt(pt.coefs()[1])+"x^7"+dt(pt.coefs()[2])+"x^6"+dt(pt.coefs()[3])+"x^5"+dt(pt.coefs()[4])+"x^4"+dt(pt.coefs()[5])+"x^3"+dt(pt.coefs()[6])+"x^2"+dt(pt.coefs()[7])+"x"+dt(pt.coefs()[8])),nt&&m.SetValue("y="+nt.coefs()[1].toFixed(ht)+dt(nt.coefs()[0])+"ln x"),at&&(bt=at.coefs()[0].toFixed(ht),x.SetValue("y="+at.coefs()[1].toFixed(ht)+(0<=bt?"+":"-")+"\\frac{"+Math.abs(bt)+"}{x}"));U=Z[0]-.1*(Z[Z.length-1]-Z[0]),G=H.AddNewRecord();G.x=U,et&&(G.ylinear=et.getValue(U).toFixed(ht)),rt&&(G.yquadratic=rt.getValue(U).toFixed(ht)),it&&(G.ycubic=it.getValue(U).toFixed(ht)),nt&&(G.ylogarithmic=nt.getValue(U).toFixed(ht)),at&&(G.yhyperbolic=at.getValue(U).toFixed(ht)),lt&&(G.ypol4=lt.getValue(U).toFixed(ht)),st&&(G.ypol5=st.getValue(U).toFixed(ht)),ut&&(G.ypol6=ut.getValue(U).toFixed(ht)),ct&&(G.ypol7=ct.getValue(U).toFixed(ht)),pt&&(G.ypol8=pt.getValue(U).toFixed(ht));for(Y=0;Y<Z.length;++Y){var ft=H.AddNewRecord();ft.i=Y+1,ft.x=Z[Y],ft.y=Q[Y],et&&(ft.ylinear=et.getValueWithStat(Z[Y]).toFixed(ht)),rt&&(ft.yquadratic=rt.getValueWithStat(Z[Y]).toFixed(ht)),it&&(ft.ycubic=it.getValueWithStat(Z[Y]).toFixed(ht)),nt&&(ft.ylogarithmic=nt.getValueWithStat(Z[Y]).toFixed(ht)),at&&(ft.yhyperbolic=at.getValueWithStat(Z[Y]).toFixed(ht)),lt&&(ft.ypol4=lt.getValueWithStat(Z[Y]).toFixed(ht)),st&&(ft.ypol5=st.getValueWithStat(Z[Y]).toFixed(ht)),ut&&(ft.ypol6=ut.getValueWithStat(Z[Y]).toFixed(ht)),ct&&(ft.ypol7=ct.getValueWithStat(Z[Y]).toFixed(ht)),pt&&(ft.ypol8=pt.getValueWithStat(Z[Y]).toFixed(ht))}m=Z[Z.length-1]+.1*(Z[Z.length-1]-Z[0]),x=H.AddNewRecord();x.x=m,et&&(x.ylinear=et.getValue(m).toFixed(ht)),rt&&(x.yquadratic=rt.getValue(m).toFixed(ht)),it&&(x.ycubic=it.getValue(m).toFixed(ht)),nt&&(x.ylogarithmic=nt.getValue(m).toFixed(ht)),at&&(x.yhyperbolic=at.getValue(m).toFixed(ht)),lt&&(x.ypol4=lt.getValue(m).toFixed(ht)),st&&(x.ypol5=st.getValue(m).toFixed(ht)),ut&&(x.ypol6=ut.getValue(m).toFixed(ht)),ct&&(x.ypol7=ct.getValue(m).toFixed(ht)),pt&&(x.ypol8=pt.getValue(m).toFixed(ht));var gt,mt,yt,vt,St,xt,Vt,bt=Z.reduce(function(t,o){return t+o},0),G=Z.reduce(function(t,o){return t+o*o},0),U=Q.reduce(function(t,o){return t+o},0),x=Q.reduce(function(t,o){return t+o*o},0),m=Q.reduce(function(t,o,e){return t+o*Z[e]},0);function wt(t,r){var i=t.reduce(function(t,o){return t+o},0)/t.length;return 1-t.reduce(function(t,o,e){return t+Math.pow(o-r[e],2)},0)/t.reduce(function(t,o,e){return t+Math.pow(o-i,2)},0)}function Rt(t,r){return t.reduce(function(t,o,e){return t+Math.abs(0!==o?(o-r[e])/o:r[e])},0)/t.length}et&&(gt=et.getStat(),mt=(O*m-bt*U)/Math.sqrt((O*G-bt*bt)*(O*x-U*U)),i.SetValue(mt),r.SetValue(mt*mt),mt=Q.reduce(function(t,o,e){return t+Math.abs(0!==o?(o-gt[e])/o:gt[e])},0)/Q.length,n.SetValue(mt)),rt&&(0<=(Vt=wt(Q,mt=rt.getStat()))&&l.SetValue(Math.sqrt(Vt)),s.SetValue(Vt),u.SetValue(Rt(Q,mt))),it&&(0<=(Vt=wt(Q,yt=it.getStat()))&&p.SetValue(Math.sqrt(Vt)),f.SetValue(Vt),g.SetValue(Rt(Q,yt))),lt&&(0<=(Vt=wt(Q,yt=lt.getStat()))&&D.SetValue(Math.sqrt(Vt)),A.SetValue(Vt),q.SetValue(Rt(Q,yt))),st&&(0<=(Vt=wt(Q,vt=st.getStat()))&&F.SetValue(Math.sqrt(Vt)),M.SetValue(Vt),_.SetValue(Rt(Q,vt))),ut&&(0<=(Vt=wt(Q,vt=ut.getStat()))&&P.SetValue(Math.sqrt(Vt)),T.SetValue(Vt),N.SetValue(Rt(Q,vt))),ct&&(0<=(Vt=wt(Q,St=ct.getStat()))&&W.SetValue(Math.sqrt(Vt)),k.SetValue(Vt),z.SetValue(Rt(Q,St))),pt&&(0<=(Vt=wt(Q,St=pt.getStat()))&&L.SetValue(Math.sqrt(Vt)),E.SetValue(Vt),I.SetValue(Rt(Q,St))),nt&&(0<=(Vt=wt(Q,xt=nt.getStat()))&&y.SetValue(Math.sqrt(Vt)),v.SetValue(Vt),S.SetValue(Rt(Q,xt))),at&&(0<=(Vt=wt(Q,xt=at.getStat()))&&V.SetValue(Math.sqrt(Vt)),b.SetValue(Vt),w.SetValue(Rt(Q,xt)))},this.Disp8731=function(t,o,e,r,i,n,a,l,s,u,c,p,h,d,f,g,m,y,v,S,x,V,b,w,R,D,A,q,C,F,M,_,B,P,T,N,U,W,k,z,G,L,E,I,X,H){e=e.GetValue();X.Display(e.dolinear),a.Display(e.dolinear),n.Display(e.dolinear),l.Display(e.dolinear),H.DisplayColumn("ylinear",e.dolinear),H.DisplaySeries("ylinear",e.dolinear),s.Display(e.doquadratic),u.Display(e.doquadratic),c.Display(e.doquadratic),p.Display(e.doquadratic),H.DisplayColumn("yquadratic",e.doquadratic),H.DisplaySeries("yquadratic",e.doquadratic),h.Display(e.docubic),d.Display(e.docubic),f.Display(e.docubic),g.Display(e.docubic),H.DisplayColumn("ycubic",e.docubic),H.DisplaySeries("ycubic",e.docubic),m.Display(e.dologarithmic),y.Display(e.dologarithmic),v.Display(e.dologarithmic),S.Display(e.dologarithmic),H.DisplayColumn("ylogarithmic",e.dologarithmic),H.DisplaySeries("ylogarithmic",e.dologarithmic),x.Display(e.dohyperbolic),V.Display(e.dohyperbolic),b.Display(e.dohyperbolic),w.Display(e.dohyperbolic),H.DisplayColumn("yhyperbolic",e.dohyperbolic),H.DisplaySeries("yhyperbolic",e.dohyperbolic),R.Display(e.do4pol),D.Display(e.do4pol),A.Display(e.do4pol),q.Display(e.do4pol),H.DisplayColumn("ypol4",e.do4pol),H.DisplaySeries("ypol4",e.do4pol),C.Display(e.dopol5),F.Display(e.dopol5),M.Display(e.dopol5),_.Display(e.dopol5),H.DisplayColumn("ypol5",e.dopol5),H.DisplaySeries("ypol5",e.dopol5),B.Display(e.dopol6),P.Display(e.dopol6),T.Display(e.dopol6),N.Display(e.dopol6),H.DisplayColumn("ypol6",e.dopol6),H.DisplaySeries("ypol6",e.dopol6),U.Display(e.dopol7),W.Display(e.dopol7),k.Display(e.dopol7),z.Display(e.dopol7),H.DisplayColumn("ypol7",e.dopol7),H.DisplaySeries("ypol7",e.dopol7),G.Display(e.dopol8),L.Display(e.dopol8),E.Display(e.dopol8),I.Display(e.dopol8),H.DisplayColumn("ypol8",e.dopol8),H.DisplaySeries("ypol8",e.dopol8)},this.Display8731=function(t,o){Dt.Disp8731(o.simple(t.constraints,"constraints"),o.options(Dt.Res8731.errors,"errors"),o.options(t.approxlist,"approxlist"),o.simple(t.xstring,"xstring"),o.simple(t.ystring,"ystring"),o.simple(t.Rlinear,"Rlinear"),o.simple(t.rxy,"rxy"),o.simple(t.Alinear,"Alinear"),o.simple(t.quadratic,"quadratic"),o.simple(t.rquadratic,"rquadratic"),o.simple(t.Rquadratic,"Rquadratic"),o.simple(t.Aquadratic,"Aquadratic"),o.simple(t.cubic,"cubic"),o.simple(t.rcubic,"rcubic"),o.simple(t.Rcubic,"Rcubic"),o.simple(t.Acubic,"Acubic"),o.simple(t.logarithmic,"logarithmic"),o.simple(t.rlogarithmic,"rlogarithmic"),o.simple(t.Rlogarithmic,"Rlogarithmic"),o.simple(t.Alogarithmic,"Alogarithmic"),o.simple(t.hyperbolic,"hyperbolic"),o.simple(t.rhyperbolic,"rhyperbolic"),o.simple(t.Rhyperbolic,"Rhyperbolic"),o.simple(t.Ahyperbolic,"Ahyperbolic"),o.simple(t.pol4,"pol4"),o.simple(t.rpol4,"rpol4"),o.simple(t.Rpol4,"Rpol4"),o.simple(t.Apol4,"Apol4"),o.simple(t.pol5,"pol5"),o.simple(t.rpol5,"rpol5"),o.simple(t.Rpol5,"Rpol5"),o.simple(t.Apol5,"Apol5"),o.simple(t.pol6,"pol6"),o.simple(t.rpol6,"rpol6"),o.simple(t.Rpol6,"Rpol6"),o.simple(t.Apol6,"Apol6"),o.simple(t.pol7,"pol7"),o.simple(t.rpol7,"rpol7"),o.simple(t.Rpol7,"Rpol7"),o.simple(t.Apol7,"Apol7"),o.simple(t.pol8,"pol8"),o.simple(t.rpol8,"rpol8"),o.simple(t.Rpol8,"Rpol8"),o.simple(t.Apol8,"Apol8"),o.simple(t.linear,"linear"),o.table(t.result,"result"))},this.Res8731={errors:{xempty:"Unable to parse X values",yempty:"Unable to parse Y values",nomatch:"X's and Y's do not match",nohyperzero:"Hyperbolic regression can't be computed with X equals to zero",nologzero:"Logarithmic regression can't be computed with X equals to zero",noconlinear:"Linear approximation could not be computed with given constraints",noconquadratic:"Quadratic approximation could not be computed with given constraints",noconcubic:"Cubic approximation could not be computed with given constraints",noconlog:"Logarithmic approximation could not be computed with given constraints",noconhype:"Hyperbolic approximation could not be computed with given constraints",noconpol4:"4th order polynomial approximation could not be computed with given constraints",noconpol5:"5th order polynomial approximation could not be computed with given constraints",noconpol6:"6th order polynomial approximation could not be computed with given constraints",noconpol7:"7th order polynomial approximation could not be computed with given constraints",noconpol8:"8th order polynomial approximation could not be computed with given constraints",approxlist:{dolinear:"Linear regression",doquadratic:"Quadratic regression",docubic:"Cubic regression",dopol4:"4th order polynomial regression",dopol5:"5th order polynomial regression",dopol6:"6th order polynomial regression",dopol7:"7th order polynomial regression",dopol8:"8th order polynomial regression",dologarithmic:"Logarithmic regression",dohyperbolic:"Hyperbolic regression"}}},this.Calculate8731=function(t){var o={},e=new Recordset("","__id__");return Dt.Calc8731(t.constraints,Dt.Res8731.errors,t.approxlist,t.xstring,t.ystring,{SetValue:function(t){o.Rlinear=t}},{SetValue:function(t){o.rxy=t}},{SetValue:function(t){o.Alinear=t}},{SetValue:function(t){o.quadratic=t}},{SetValue:function(t){o.rquadratic=t}},{SetValue:function(t){o.Rquadratic=t}},{SetValue:function(t){o.Aquadratic=t}},{SetValue:function(t){o.cubic=t}},{SetValue:function(t){o.rcubic=t}},{SetValue:function(t){o.Rcubic=t}},{SetValue:function(t){o.Acubic=t}},{SetValue:function(t){o.logarithmic=t}},{SetValue:function(t){o.rlogarithmic=t}},{SetValue:function(t){o.Rlogarithmic=t}},{SetValue:function(t){o.Alogarithmic=t}},{SetValue:function(t){o.hyperbolic=t}},{SetValue:function(t){o.rhyperbolic=t}},{SetValue:function(t){o.Rhyperbolic=t}},{SetValue:function(t){o.Ahyperbolic=t}},{SetValue:function(t){o.pol4=t}},{SetValue:function(t){o.rpol4=t}},{SetValue:function(t){o.Rpol4=t}},{SetValue:function(t){o.Apol4=t}},{SetValue:function(t){o.pol5=t}},{SetValue:function(t){o.rpol5=t}},{SetValue:function(t){o.Rpol5=t}},{SetValue:function(t){o.Apol5=t}},{SetValue:function(t){o.pol6=t}},{SetValue:function(t){o.rpol6=t}},{SetValue:function(t){o.Rpol6=t}},{SetValue:function(t){o.Apol6=t}},{SetValue:function(t){o.pol7=t}},{SetValue:function(t){o.rpol7=t}},{SetValue:function(t){o.Rpol7=t}},{SetValue:function(t){o.Apol7=t}},{SetValue:function(t){o.pol8=t}},{SetValue:function(t){o.rpol8=t}},{SetValue:function(t){o.Rpol8=t}},{SetValue:function(t){o.Apol8=t}},{SetValue:function(t){o.linear=t}},e),o.result=e.GetRecordArray(),o}};</script><script>
+PLANETCALC.init();
+</script>
+</body>
+
+<!-- Mirrored from planetcalc.com/8735/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 31 Jul 2023 11:59:21 GMT -->
+</html>
