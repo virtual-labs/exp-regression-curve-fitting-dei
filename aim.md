@@ -1,0 +1,1 @@
+To find the Regression and curve fitting using procedures such as Least-Square and Weighted Least-Square curve fitting

@@ -1,0 +1,27 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "What is the main goal of regression analysis?",
+      "answers": {
+        "a": "To predict future data ponits",
+        "b": "To find the exact middle points of a dataset",
+        "c": "To calculate the average of all points",
+        "d": "To determine the color of data points"
+      },
+      "correctAnswer": "a",
+      "difficulty": "Intermediate"
+    },
+    {
+      "question": "Which type of regression is most appropriate when the relationship between variables appears to grow exponentially?",
+      "answers": {
+        "a": "Linear regression",
+        "b": "Exponential regression",
+        "c": "Polynomial regression",
+        "d": "Logarithmic regression"
+      },
+      "correctAnswer": "b",
+      "difficulty": "Intermediate"
+    }
+  ]
+}
