@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regression and Curve Fitting Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .column {
+            flex: 1;
+            width: 450px; /* Fixed width for both columns */
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            width: 100%; /* Full width of the column */
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1c2833;
+        }
+        #result {
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin-bottom: 50px;
+        }
+        canvas {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+        h2 {
+            text-align: center;
+            background-color: #2c3e50;
+            border-radius: 8px;
+            color: white;
+            padding: 8px;
+            margin: 0 auto 20px;
+            width: 900px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Regression and Curve Fitting</h2>
+    
+    <div class="container">
+        <!-- Input Column -->
+        <div class="column">
+            <h3><center>Input Parameters</h3>
+            
+            <div class="form-group">
+                <label for="dataInput">Enter X,Y Data Points (one pair per line):</label>
+                <textarea id="dataInput" rows="10" placeholder="1,2.1&#10;2,4.0&#10;3,6.3&#10;4,8.1&#10;5,9.9"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="weights">Weights (one per line):</label>
+                <textarea id="weights" rows="5" placeholder="1&#10;1&#10;1&#10;1&#10;1"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="regressionType">Regression Type:</label>
+                <select id="regressionType">
+                    <option value="linear">Linear Regression (y = mx + b)</option>
+                    <option value="polynomial2">Polynomial (2nd degree)</option>
+                    <option value="exponential">Exponential (y = ae^(bx))</option>
+                </select>
+            </div>
+
+            <button onclick="calculateRegression()">Simulate</button>
+        </div>
+
+        <!-- Output Column -->
+        <div class="column">
+            <h3><center>Results</h3>
+                <div id="result"></div>
+                <h1> </h1>
+            <canvas id="plotCanvas"></canvas>
+        </div>
+    </div>
+
+    <script>
+        function parseData() {
+            const dataText = document.getElementById('dataInput').value.trim();
+            const lines = dataText.split('\n');
+            const points = [];
+            
+            for (const line of lines) {
+                const [x, y] = line.split(',').map(Number);
+                if (!isNaN(x) && !isNaN(y)) {
+                    points.push([x, y]);
+                }
+            }
+            
+            return points;
+        }
+
+        function parseWeights() {
+            const weightsText = document.getElementById('weights').value.trim();
+            if (!weightsText) return null;
+            
+            return weightsText.split('\n').map(Number);
+        }
+
+        function linearRegression(points, weights) {
+            const n = points.length;
+            let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+            let sumWeights = 0;
+            
+            for (let i = 0; i < n; i++) {
+                const w = weights ? weights[i] : 1;
+                sumWeights += w;
+                sumX += w * points[i][0];
+                sumY += w * points[i][1];
+                sumXY += w * points[i][0] * points[i][1];
+                sumXX += w * points[i][0] * points[i][0];
+            }
+
+            const slope = (sumXY * sumWeights - sumX * sumY) / (sumXX * sumWeights - sumX * sumX);
+            const intercept = (sumY - slope * sumX) / sumWeights;
+            
+            return {
+                slope,
+                intercept,
+                equation: `y = ${slope.toFixed(4)}x + ${intercept.toFixed(4)}`
+            };
+        }
+
+        function polynomialRegression(points, weights, degree = 2) {
+            const n = points.length;
+            const matrix = [];
+            const vector = [];
+            
+            for (let i = 0; i <= degree; i++) {
+                matrix[i] = [];
+                for (let j = 0; j <= degree; j++) {
+                    let sum = 0;
+                    for (let k = 0; k < n; k++) {
+                        const w = weights ? weights[k] : 1;
+                        sum += w * Math.pow(points[k][0], i + j);
+                    }
+                    matrix[i][j] = sum;
+                }
+                
+                let sum = 0;
+                for (let k = 0; k < n; k++) {
+                    const w = weights ? weights[k] : 1;
+                    sum += w * points[k][1] * Math.pow(points[k][0], i);
+                }
+                vector[i] = sum;
+            }
+            
+            const coefficients = math.lusolve(matrix, vector).flat();
+            
+            let equation = 'y = ';
+            for (let i = coefficients.length - 1; i >= 0; i--) {
+                if (i === coefficients.length - 1) {
+                    equation += `${coefficients[i].toFixed(4)}x^${i}`;
+                } else if (i === 0) {
+                    equation += ` + ${coefficients[i].toFixed(4)}`;
+                } else {
+                    equation += ` + ${coefficients[i].toFixed(4)}x^${i}`;
+                }
+            }
+            
+            return {
+                coefficients,
+                equation
+            };
+        }
+
+        function exponentialRegression(points, weights) {
+            const transformedPoints = points.map(p => [p[0], Math.log(p[1])]);
+            const linear = linearRegression(transformedPoints, weights);
+            
+            const a = Math.exp(linear.intercept);
+            const b = linear.slope;
+            
+            return {
+                a,
+                b,
+                equation: `y = ${a.toFixed(4)}e^(${b.toFixed(4)}x)`
+            };
+        }
+
+        function calculateRSquared(points, regression, type) {
+            let yMean = 0;
+            let ssRes = 0;
+            let ssTot = 0;
+            
+            points.forEach(p => yMean += p[1]);
+            yMean /= points.length;
+            
+            points.forEach(p => {
+                let yPred;
+                if (type === 'linear') {
+                    yPred = regression.slope * p[0] + regression.intercept;
+                } else if (type === 'polynomial2') {
+                    yPred = regression.coefficients[2] * p[0] * p[0] + 
+                            regression.coefficients[1] * p[0] + 
+                            regression.coefficients[0];
+                } else if (type === 'exponential') {
+                    yPred = regression.a * Math.exp(regression.b * p[0]);
+                }
+                
+                ssRes += Math.pow(p[1] - yPred, 2);
+                ssTot += Math.pow(p[1] - yMean, 2);
+            });
+            
+            return 1 - (ssRes / ssTot);
+        }
+
+        function plotResults(points, regression, type) {
+            const canvas = document.getElementById('plotCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = 600;
+            canvas.height = 400;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            
+            let minX = Math.min(...points.map(p => p[0]));
+            let maxX = Math.max(...points.map(p => p[0]));
+            let minY = Math.min(...points.map(p => p[1]));
+            let maxY = Math.max(...points.map(p => p[1]));
+            
+            const padding = 40;
+            const plotWidth = canvas.width - 2 * padding;
+            const plotHeight = canvas.height - 2 * padding;
+            
+            const scaleX = x => padding + (x - minX) * plotWidth / (maxX - minX);
+            const scaleY = y => canvas.height - padding - (y - minY) * plotHeight / (maxY - minY);
+            
+            ctx.beginPath();
+            ctx.strokeStyle = '#000';
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, canvas.height - padding);
+            ctx.lineTo(canvas.width - padding, canvas.height - padding);
+            ctx.stroke();
+            
+            ctx.fillStyle = '#007bff';
+            points.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(scaleX(p[0]), scaleY(p[1]), 4, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            
+            ctx.beginPath();
+            ctx.strokeStyle = '#ff0000';
+            const steps = 100;
+            for (let i = 0; i <= steps; i++) {
+                const x = minX + (maxX - minX) * i / steps;
+                let y;
+                
+                if (type === 'linear') {
+                    y = regression.slope * x + regression.intercept;
+                } else if (type === 'polynomial2') {
+                    y = regression.coefficients[2] * x * x + 
+                        regression.coefficients[1] * x + 
+                        regression.coefficients[0];
+                } else if (type === 'exponential') {
+                    y = regression.a * Math.exp(regression.b * x);
+                }
+                
+                if (i === 0) {
+                    ctx.moveTo(scaleX(x), scaleY(y));
+                } else {
+                    ctx.lineTo(scaleX(x), scaleY(y));
+                }
+            }
+            ctx.stroke();
+        }
+
+        function calculateRegression() {
+            try {
+                const points = parseData();
+                if (points.length < 2) {
+                    throw new Error('Please enter at least 2 data points');
+                }
+                
+                const weights = parseWeights();
+                const type = document.getElementById('regressionType').value;
+                
+                let result;
+                if (type === 'linear') {
+                    result = linearRegression(points, weights);
+                } else if (type === 'polynomial2') {
+                    result = polynomialRegression(points, weights, 2);
+                } else if (type === 'exponential') {
+                    result = exponentialRegression(points, weights);
+                }
+                
+                const r2 = calculateRSquared(points, result, type);
+                
+                document.getElementById('result').textContent = 
+                    `Regression Equation: ${result.equation}\n` +
+                    `R-squared: ${r2.toFixed(4)}`;
+                
+                plotResults(points, result, type);
+                
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    `<div class="error">Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+</body>
+</html>
