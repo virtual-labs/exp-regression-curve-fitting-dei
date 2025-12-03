@@ -4,13 +4,12 @@
     {
       "question": "What is the main goal of regression analysis?",
       "answers": {
-        "a": "To predict future data ponits",
+        "a": "To predict future data points",
         "b": "To find the exact middle points of a dataset",
         "c": "To calculate the average of all points",
         "d": "To determine the color of data points"
       },
-      "correctAnswer": "a",
-      "difficulty": "Intermediate"
+      "correctAnswer": "a"
     },
     {
       "question": "Which type of regression is most appropriate when the relationship between variables appears to grow exponentially?",
@@ -20,8 +19,87 @@
         "c": "Polynomial regression",
         "d": "Logarithmic regression"
       },
-      "correctAnswer": "b",
-      "difficulty": "Intermediate"
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Least-Square Method works by minimizing:",
+      "answers": {
+        "a": "Sum of all values",
+        "b": "Area under curve",
+        "c": "Sum of squared errors",
+        "d": "Slope of the curve"
+      },
+      "correctAnswer": "c"
+    },
+    {
+      "question": "Weighted Least-Square Method is useful when:",
+      "answers": {
+        "a": "All data points have equal accuracy",
+        "b": "Some data points are more reliable than others",
+        "c": "Dataset has only two points",
+        "d": "Curve is always straight"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Regression helps find:",
+      "answers": {
+        "a": "Relationship between dependent and independent variables",
+        "b": "Only the largest data value",
+        "c": "Angles in geometric shapes",
+        "d": "Random output without structure"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "Curve fitting visually represents:",
+      "answers": {
+        "a": "How well a model fits observed data",
+        "b": "Only the maximum value in the data",
+        "c": "Number of rows in dataset",
+        "d": "Color of the graph background"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "Polynomial regression is suitable for:",
+      "answers": {
+        "a": "Non-linear patterns in data",
+        "b": "Only perfectly straight-line data",
+        "c": "Purely categorical data",
+        "d": "Finding angle of a triangle"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "Regression models usually aim to:",
+      "answers": {
+        "a": "Minimize prediction error",
+        "b": "Increase dataset size",
+        "c": "Ignore dependent variables",
+        "d": "Remove all data variations"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "In data science, regression is used for:",
+      "answers": {
+        "a": "Prediction and forecasting",
+        "b": "Sorting data alphabetically",
+        "c": "Measuring file size",
+        "d": "Playing animations"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "A good regression model:",
+      "answers": {
+        "a": "Fits the underlying trend closely",
+        "b": "Gives a completely random output",
+        "c": "Avoids using any input data",
+        "d": "Changes with every simulation"
+      },
+      "correctAnswer": "a"
     }
   ]
 }
