@@ -2,26 +2,104 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "What is the primary purpose of R- Squered in regression analysis?",
+      "question": "What is the primary purpose of R-Squared in regression analysis?",
       "answers": {
-        "a": "To determine the no. of datapoints",
-        "b": "To measure the proportion of varience explained by the model",
+        "a": "To determine the number of data points",
+        "b": "To measure the proportion of variance explained by the model",
         "c": "To calculate the slope of the regression line",
-        "d": "To indetify outliers in the dataset"
+        "d": "To identify outliers in the dataset"
       },
-      "correctAnswer": "b",
-      "difficulty": "beginner"
+      "correctAnswer": "b"
     },
     {
-      "question": "In weighted least squared regression, what does assigning different weights to data points typically indicate?",
+      "question": "In weighted least squares regression, what does assigning different weights to data points indicate?",
       "answers": {
         "a": "The complexity of the mathematical calculation",
-        "b": "The relative importance or reliability of each data ponit",
-        "c": "The total no. of observation",
+        "b": "The relative importance or reliability of each data point",
+        "c": "The total number of observations",
         "d": "The degree of polynomial regression"
       },
-      "correctAnswer": "b",
-      "difficulty": "beginner"
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Which best describes R-Squared?",
+      "answers": {
+        "a": "Accuracy of model predictions",
+        "b": "Strength of linear relationship between variables",
+        "c": "Variance unrelated to model",
+        "d": "Number of variables included"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Which method minimizes the sum of squared differences between observed and predicted values?",
+      "answers": {
+        "a": "Least-Square Regression",
+        "b": "Sorting Algorithm",
+        "c": "Fourier Transform",
+        "d": "Clustering Method"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "Curve fitting helps in:",
+      "answers": {
+        "a": "Understanding trends in data",
+        "b": "Removing dependent variables",
+        "c": "Increasing randomness in data",
+        "d": "Hiding errors"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "A low R-Squared value means:",
+      "answers": {
+        "a": "Model explains very little of the data variation",
+        "b": "Model fits the data extremely well",
+        "c": "Model has no prediction error",
+        "d": "Dataset is always incorrect"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "Weighted least squares is useful when:",
+      "answers": {
+        "a": "All measurements are equally accurate",
+        "b": "Some observations have more reliability than others",
+        "c": "Data contains only integers",
+        "d": "There is just one data point"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Regression line is chosen to:",
+      "answers": {
+        "a": "Maximize residual errors",
+        "b": "Minimize squared residuals",
+        "c": "Randomize predictions",
+        "d": "Avoid using input data"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Which visualization is commonly used to show regression fit?",
+      "answers": {
+        "a": "Scatter plot with trend line",
+        "b": "Pie chart",
+        "c": "Bar graph only",
+        "d": "Heatmap only"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "Regression is mainly used for:",
+      "answers": {
+        "a": "Prediction and relationship modeling",
+        "b": "Sorting names alphabetically",
+        "c": "Formatting files",
+        "d": "Removing unused data"
+      },
+      "correctAnswer": "a"
     }
   ]
 }
