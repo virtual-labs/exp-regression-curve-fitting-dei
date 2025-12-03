@@ -1,46 +1,20 @@
-Regression and curve fitting are statistical methods for modeling relationships between variables by finding the best-fitting curve through a set of data points. The core objective is to minimize the difference between observed and predicted values.
-The Key Regression Approaches are:
-1. Least Squares Method
-   - Minimizes the sum of squared vertical distances between data points and the regression line
-   - Provides an optimal line that represents the underlying data trend
-   - Assumes errors are normally distributed and independent
-2. Weighted Least Squares
-   - Extends least squares by incorporating weights to account for varying data point reliability
-   - Allows differential emphasis on different data points
-   - Useful when data points have inherent measurement uncertainties
-The implemented regression calculator demonstrates three primary curve-fitting techniques:
-1. Linear Regression
-- Simple model representing a straight line (y = mx + b)
-- Captures linear relationships between variables
-- Lowest complexity among regression types
-2. Polynomial Regression
-- Allows capturing non-linear relationships
-- Second-degree polynomial enables more complex curve fitting
-- Increases model flexibility compared to linear regression
-3. Exponential Regression
-- Models relationships with exponential growth or decay
-- Transforms data to linear space for coefficient estimation
-- Suitable for processes with multiplicative changes
+### Theory
 
- R-squared (Coefficient of Determination) are:
-- Indicates the proportion of variance explained by the regression model
-- Ranges from 0 to 1
-- Higher values suggest better model fit
-- Quantifies the model's predictive power
-Implementation Strategies are: 
-- Robust error handling
-- Flexible input mechanisms
-- Visual representation of results
-- Support for weighted and unweighted regressions
-Computational Approach
-- Uses matrix solving techniques (LU decomposition)
-- Handles transformation for exponential regression
-- Implements comprehensive error calculation
-Strengths of the Approach are: 
-1. Supports multiple regression types
-2. Allows custom data point weighting
-3. Provides visual and numerical results
-4. Handles various data distributions
-5. User-friendly interface for regression analysis
-4. Minimal advanced statistical diagnostics
-Regression and curve fitting are powerful techniques for understanding data relationships. The implemented web application demonstrates a practical, accessible approach to statistical modeling, enabling users to explore different regression methodologies with ease.
+Regression and curve fitting are statistical techniques used to model the relationship between two or more variables. When we collect data from experiments or observations, the data points may not perfectly align along a straight or smooth curve due to variations, measurement errors, or natural randomness. Curve fitting helps generate a mathematical function that best represents the underlying trend of the data.
+
+In this experiment, two important regression methods are used:
+
+1. **Least-Square Method**
+   The Least-Square technique determines the best-fit curve by minimizing the sum of the squared differences (errors) between the observed data and the predicted values. It ensures that the chosen curve has the smallest possible total deviation from the actual data points.
+
+2. **Weighted Least-Square Method**
+   This method extends the Least-Square approach by assigning different weights to different data points. Points with higher reliability or importance are given greater weight. This helps improve the accuracy of the fitted model, especially when some data measurements are less precise.
+
+Different regression models may be applied depending on the pattern of data:
+- **Linear Regression** fits a straight line, useful for linear relationships.
+- **Polynomial Regression** fits a curved line, useful for non-linear data trends.
+- **Exponential Regression** models rapid growth or decay behaviors.
+
+The effectiveness of a regression model is often measured using statistical indicators like the **coefficient of determination (R²)**, which shows how well the model explains data variability.
+
+Regression and curve fitting play a vital role in fields such as engineering, machine learning, economics, medical research, and predictive analytics, enabling better decision-making and future forecasting.
