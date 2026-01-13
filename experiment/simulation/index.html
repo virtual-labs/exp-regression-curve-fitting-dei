@@ -18,7 +18,7 @@
         }
         .column {
             flex: 1;
-            width: 450px; /* Fixed width for both columns */
+            width: 450px;
             background: white;
             padding: 20px;
             border-radius: 8px;
@@ -44,7 +44,7 @@
             color: white;
             padding: 10px 20px;
             border: none;
-            width: 100%; /* Full width of the column */
+            width: 100%;
             border-radius: 4px;
             cursor: pointer;
         }
@@ -217,14 +217,18 @@
             };
         }
 
-        function calculateRSquared(points, regression, type) {
+        function calculateFitMetrics(points, regression, type) {
             let yMean = 0;
             let ssRes = 0;
             let ssTot = 0;
+            let sumAbsError = 0;
+            const n = points.length;
             
+            // Calculate mean
             points.forEach(p => yMean += p[1]);
-            yMean /= points.length;
+            yMean /= n;
             
+            // Calculate residuals and totals
             points.forEach(p => {
                 let yPred;
                 if (type === 'linear') {
@@ -237,11 +241,40 @@
                     yPred = regression.a * Math.exp(regression.b * p[0]);
                 }
                 
-                ssRes += Math.pow(p[1] - yPred, 2);
+                const error = p[1] - yPred;
+                ssRes += error * error;
                 ssTot += Math.pow(p[1] - yMean, 2);
+                sumAbsError += Math.abs(error);
             });
             
-            return 1 - (ssRes / ssTot);
+            // Number of parameters (degrees of freedom)
+            let k;
+            if (type === 'linear') k = 2;  // slope and intercept
+            else if (type === 'polynomial2') k = 3;  // 3 coefficients
+            else if (type === 'exponential') k = 2;  // a and b
+            
+            // R-squared
+            const r2 = 1 - (ssRes / ssTot);
+            
+            // Adjusted R-squared
+            const adjR2 = 1 - ((1 - r2) * (n - 1) / (n - k - 1));
+            
+            // Root Mean Square Error (RMSE)
+            const rmse = Math.sqrt(ssRes / n);
+            
+            // Mean Absolute Error (MAE)
+            const mae = sumAbsError / n;
+            
+            // Standard Error of Estimate
+            const see = Math.sqrt(ssRes / (n - k));
+            
+            return {
+                r2,
+                adjR2,
+                rmse,
+                mae,
+                see
+            };
         }
 
         function plotResults(points, regression, type) {
@@ -323,11 +356,16 @@
                     result = exponentialRegression(points, weights);
                 }
                 
-                const r2 = calculateRSquared(points, result, type);
+                const metrics = calculateFitMetrics(points, result, type);
                 
                 document.getElementById('result').textContent = 
-                    `Regression Equation: ${result.equation}\n` +
-                    `R-squared: ${r2.toFixed(4)}`;
+                    `Regression Equation:\n${result.equation}\n\n` +
+                    `Degree of Fit Metrics\n` +
+                    `R-squared (R²):           ${metrics.r2.toFixed(4)}\n` +
+                    `Adjusted R²:              ${metrics.adjR2.toFixed(4)}\n` +
+                    `RMSE:                     ${metrics.rmse.toFixed(4)}\n` +
+                    `MAE:                      ${metrics.mae.toFixed(4)}\n` +
+                    `Standard Error:           ${metrics.see.toFixed(4)}`;
                 
                 plotResults(points, result, type);
                 
