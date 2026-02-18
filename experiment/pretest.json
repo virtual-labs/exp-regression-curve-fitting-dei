@@ -2,104 +2,104 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "An eigenvalue of a matrix A satisfies which equation?",
+      "question": "The Least Squares method determines parameters by minimizing:",
       "answers": {
-        "a": "Aλ = I",
-        "b": "det(A - λI) = 0",
-        "c": "A + λI = 0",
-        "d": "det(A + I) = λ"
+        "a": "Sum of absolute errors",
+        "b": "Sum of squared residuals",
+        "c": "Maximum error",
+        "d": "Determinant of matrix"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "An eigenvector corresponding to eigenvalue λ satisfies:",
+      "question": "A residual in regression represents:",
       "answers": {
-        "a": "Av = λv",
-        "b": "A + v = λ",
-        "c": "det(A) = 0",
-        "d": "Av = v"
+        "a": "Observed value minus predicted value",
+        "b": "Predicted value minus observed value",
+        "c": "Slope of the line",
+        "d": "Matrix determinant"
       },
       "correctAnswer": "a"
     },
     {
-      "question": "If A is a 2×2 matrix, the characteristic equation is obtained by:",
+      "question": "In matrix form, the normal equation for least squares is:",
       "answers": {
-        "a": "det(A - λI) = 0",
-        "b": "A² = λI",
-        "c": "A + λI = 0",
-        "d": "det(A) = λ"
-      },
-      "correctAnswer": "a"
-    },
-    {
-      "question": "If the determinant of matrix A is zero, then:",
-      "answers": {
-        "a": "All eigenvalues are positive",
-        "b": "At least one eigenvalue is zero",
-        "c": "Matrix is always invertible",
-        "d": "Eigenvectors do not exist"
+        "a": "Xβ = y",
+        "b": "XᵀXβ = Xᵀy",
+        "c": "XXᵀβ = y",
+        "d": "βX = y"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "A matrix is diagonalizable if:",
+      "question": "Least squares is typically used when the system of equations is:",
       "answers": {
-        "a": "It has n linearly independent eigenvectors",
-        "b": "Its determinant is zero",
-        "c": "All entries are non-zero",
-        "d": "It is always symmetric"
-      },
-      "correctAnswer": "a"
-    },
-    {
-      "question": "For a symmetric matrix, eigenvalues are always:",
-      "answers": {
-        "a": "Complex",
-        "b": "Negative",
-        "c": "Real",
-        "d": "Zero"
+        "a": "Exactly determined",
+        "b": "Underdetermined",
+        "c": "Overdetermined",
+        "d": "Nonlinear only"
       },
       "correctAnswer": "c"
     },
     {
-      "question": "Eigenvectors corresponding to distinct eigenvalues of a symmetric matrix are:",
+      "question": "The coefficient of determination (R²) measures:",
       "answers": {
-        "a": "Parallel",
-        "b": "Orthogonal",
-        "c": "Identical",
-        "d": "Random"
+        "a": "Slope of regression line",
+        "b": "Proportion of variance explained by the model",
+        "c": "Total number of data points",
+        "d": "Inverse of residual"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "The sum of eigenvalues of a matrix equals:",
+      "question": "Weighted Least Squares differs from ordinary Least Squares because it:",
       "answers": {
-        "a": "Determinant of matrix",
-        "b": "Trace of matrix",
-        "c": "Rank of matrix",
-        "d": "Inverse of matrix"
+        "a": "Uses logarithmic transformation",
+        "b": "Assigns different importance (weights) to data points",
+        "c": "Ignores residuals",
+        "d": "Uses integration"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "The product of eigenvalues of a matrix equals:",
+      "question": "Weighted Least Squares is particularly useful when:",
       "answers": {
-        "a": "Trace",
-        "b": "Rank",
-        "c": "Determinant",
-        "d": "Transpose"
+        "a": "Errors have constant variance",
+        "b": "Errors have unequal variance (heteroscedasticity)",
+        "c": "Data is perfectly linear",
+        "d": "Matrix is square"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "In linear regression y = β0 + β1x, β1 represents:",
+      "answers": {
+        "a": "Intercept",
+        "b": "Slope",
+        "c": "Residual",
+        "d": "Variance"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "The solution to least squares problem can be interpreted geometrically as:",
+      "answers": {
+        "a": "Projection of vector y onto column space of X",
+        "b": "Intersection of two lines",
+        "c": "Matrix inversion only",
+        "d": "Derivative of function"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "If XᵀX is singular in least squares computation, then:",
+      "answers": {
+        "a": "Unique solution always exists",
+        "b": "Matrix is full rank",
+        "c": "Columns of X are linearly dependent",
+        "d": "Residual becomes zero"
       },
       "correctAnswer": "c"
-    },
-    {
-      "question": "The Power Method is used to:",
-      "answers": {
-        "a": "Find smallest eigenvalue only",
-        "b": "Find dominant eigenvalue numerically",
-        "c": "Compute matrix inverse",
-        "d": "Solve linear equations"
-      },
-      "correctAnswer": "b"
     }
   ]
 }

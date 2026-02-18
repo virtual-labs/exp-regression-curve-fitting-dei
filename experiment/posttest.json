@@ -2,104 +2,104 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "The characteristic polynomial of a matrix A is obtained from:",
+      "question": "In Least Squares regression, the optimal solution satisfies:",
       "answers": {
-        "a": "A² - λI",
-        "b": "det(A - λI)",
-        "c": "A + λI",
-        "d": "det(A)"
+        "a": "Residuals are maximized",
+        "b": "Xᵀ(y - Xβ) = 0",
+        "c": "Determinant of X is zero",
+        "d": "β = y"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "If an eigenvalue has algebraic multiplicity greater than its geometric multiplicity, the matrix is:",
+      "question": "The geometric interpretation of Least Squares solution is:",
       "answers": {
-        "a": "Always diagonalizable",
-        "b": "Not diagonalizable",
-        "c": "Always symmetric",
-        "d": "Identity matrix"
-      },
-      "correctAnswer": "b"
-    },
-    {
-      "question": "The eigenvectors of a matrix form a basis if:",
-      "answers": {
-        "a": "The matrix is singular",
-        "b": "The matrix has n linearly independent eigenvectors",
-        "c": "The determinant is zero",
-        "d": "All entries are positive"
-      },
-      "correctAnswer": "b"
-    },
-    {
-      "question": "For a symmetric matrix A, the Spectral Theorem states that A can be:",
-      "answers": {
-        "a": "Reduced to upper triangular form only",
-        "b": "Diagonalized using an orthogonal matrix",
-        "c": "Converted to zero matrix",
-        "d": "Made singular"
-      },
-      "correctAnswer": "b"
-    },
-    {
-      "question": "If λ is an eigenvalue of A, then 1/λ is an eigenvalue of:",
-      "answers": {
-        "a": "A²",
-        "b": "A⁻¹ (if invertible)",
-        "c": "A + I",
-        "d": "Transpose of A"
-      },
-      "correctAnswer": "b"
-    },
-    {
-      "question": "The Power Method converges fastest when:",
-      "answers": {
-        "a": "All eigenvalues are equal",
-        "b": "The dominant eigenvalue has much larger magnitude than others",
-        "c": "The matrix is zero",
-        "d": "The determinant is zero"
-      },
-      "correctAnswer": "b"
-    },
-    {
-      "question": "If a matrix has complex eigenvalues, it must be:",
-      "answers": {
-        "a": "Symmetric",
-        "b": "Non-symmetric in real field",
-        "c": "Identity matrix",
-        "d": "Always singular"
-      },
-      "correctAnswer": "b"
-    },
-    {
-      "question": "The stability of a dynamical system depends on:",
-      "answers": {
-        "a": "Magnitude of eigenvalues",
-        "b": "Trace only",
-        "c": "Determinant only",
-        "d": "Matrix dimension only"
+        "a": "Projection of y onto column space of X",
+        "b": "Intersection of curves",
+        "c": "Matrix inversion only",
+        "d": "Gradient of polynomial"
       },
       "correctAnswer": "a"
     },
     {
-      "question": "If zero is an eigenvalue of matrix A, then A is:",
+      "question": "If the design matrix X has full column rank, then the Least Squares solution is:",
       "answers": {
-        "a": "Invertible",
-        "b": "Singular",
-        "c": "Orthogonal",
-        "d": "Diagonal"
+        "a": "Non-unique",
+        "b": "Unique",
+        "c": "Always zero",
+        "d": "Complex only"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "Eigenvalue decomposition of A can be written as:",
+      "question": "Weighted Least Squares modifies the normal equation to:",
       "answers": {
-        "a": "A = PDP⁻¹",
-        "b": "A = P + D",
-        "c": "A = D²",
-        "d": "A = I - P"
+        "a": "XᵀXβ = y",
+        "b": "XᵀWXβ = XᵀWy",
+        "c": "WXβ = y",
+        "d": "XWβ = y"
       },
-      "correctAnswer": "a"
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Weighted Least Squares is most appropriate when:",
+      "answers": {
+        "a": "All errors have equal variance",
+        "b": "Errors exhibit heteroscedasticity",
+        "c": "Data is perfectly linear",
+        "d": "Sample size is small only"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "If two predictor variables are highly correlated, the regression model suffers from:",
+      "answers": {
+        "a": "Homoscedasticity",
+        "b": "Multicollinearity",
+        "c": "Orthogonality",
+        "d": "Singularity of y"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "The residual vector in Least Squares is orthogonal to:",
+      "answers": {
+        "a": "Row space of X",
+        "b": "Column space of X",
+        "c": "Null space of X",
+        "d": "Determinant"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Overfitting in curve fitting typically occurs when:",
+      "answers": {
+        "a": "Model is too simple",
+        "b": "Model has too many parameters relative to data",
+        "c": "Residuals are large",
+        "d": "Matrix is square"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "If R² is close to 1, it indicates:",
+      "answers": {
+        "a": "Poor model fit",
+        "b": "High proportion of variance explained",
+        "c": "High bias",
+        "d": "Model instability"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "In matrix-based regression, solving via QR decomposition instead of normal equations improves:",
+      "answers": {
+        "a": "Graph color",
+        "b": "Numerical stability",
+        "c": "Number of variables",
+        "d": "Data randomness"
+      },
+      "correctAnswer": "b"
     }
   ]
 }
