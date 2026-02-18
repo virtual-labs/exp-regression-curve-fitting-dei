@@ -2,102 +2,102 @@
   "version": 2.0,
   "questions": [
     {
-      "question": "What is the main goal of regression analysis?",
+      "question": "The characteristic polynomial of a matrix A is obtained from:",
       "answers": {
-        "a": "To predict future data points",
-        "b": "To find the exact middle points of a dataset",
-        "c": "To calculate the average of all points",
-        "d": "To determine the color of data points"
-      },
-      "correctAnswer": "a"
-    },
-    {
-      "question": "Which type of regression is most appropriate when the relationship between variables appears to grow exponentially?",
-      "answers": {
-        "a": "Linear regression",
-        "b": "Exponential regression",
-        "c": "Polynomial regression",
-        "d": "Logarithmic regression"
+        "a": "A² - λI",
+        "b": "det(A - λI)",
+        "c": "A + λI",
+        "d": "det(A)"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "Least-Square Method works by minimizing:",
+      "question": "If an eigenvalue has algebraic multiplicity greater than its geometric multiplicity, the matrix is:",
       "answers": {
-        "a": "Sum of all values",
-        "b": "Area under curve",
-        "c": "Sum of squared errors",
-        "d": "Slope of the curve"
-      },
-      "correctAnswer": "c"
-    },
-    {
-      "question": "Weighted Least-Square Method is useful when:",
-      "answers": {
-        "a": "All data points have equal accuracy",
-        "b": "Some data points are more reliable than others",
-        "c": "Dataset has only two points",
-        "d": "Curve is always straight"
+        "a": "Always diagonalizable",
+        "b": "Not diagonalizable",
+        "c": "Always symmetric",
+        "d": "Identity matrix"
       },
       "correctAnswer": "b"
     },
     {
-      "question": "Regression helps find:",
+      "question": "The eigenvectors of a matrix form a basis if:",
       "answers": {
-        "a": "Relationship between dependent and independent variables",
-        "b": "Only the largest data value",
-        "c": "Angles in geometric shapes",
-        "d": "Random output without structure"
+        "a": "The matrix is singular",
+        "b": "The matrix has n linearly independent eigenvectors",
+        "c": "The determinant is zero",
+        "d": "All entries are positive"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "For a symmetric matrix A, the Spectral Theorem states that A can be:",
+      "answers": {
+        "a": "Reduced to upper triangular form only",
+        "b": "Diagonalized using an orthogonal matrix",
+        "c": "Converted to zero matrix",
+        "d": "Made singular"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "If λ is an eigenvalue of A, then 1/λ is an eigenvalue of:",
+      "answers": {
+        "a": "A²",
+        "b": "A⁻¹ (if invertible)",
+        "c": "A + I",
+        "d": "Transpose of A"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "The Power Method converges fastest when:",
+      "answers": {
+        "a": "All eigenvalues are equal",
+        "b": "The dominant eigenvalue has much larger magnitude than others",
+        "c": "The matrix is zero",
+        "d": "The determinant is zero"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "If a matrix has complex eigenvalues, it must be:",
+      "answers": {
+        "a": "Symmetric",
+        "b": "Non-symmetric in real field",
+        "c": "Identity matrix",
+        "d": "Always singular"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "The stability of a dynamical system depends on:",
+      "answers": {
+        "a": "Magnitude of eigenvalues",
+        "b": "Trace only",
+        "c": "Determinant only",
+        "d": "Matrix dimension only"
       },
       "correctAnswer": "a"
     },
     {
-      "question": "Curve fitting visually represents:",
+      "question": "If zero is an eigenvalue of matrix A, then A is:",
       "answers": {
-        "a": "How well a model fits observed data",
-        "b": "Only the maximum value in the data",
-        "c": "Number of rows in dataset",
-        "d": "Color of the graph background"
+        "a": "Invertible",
+        "b": "Singular",
+        "c": "Orthogonal",
+        "d": "Diagonal"
       },
-      "correctAnswer": "a"
+      "correctAnswer": "b"
     },
     {
-      "question": "Polynomial regression is suitable for:",
+      "question": "Eigenvalue decomposition of A can be written as:",
       "answers": {
-        "a": "Non-linear patterns in data",
-        "b": "Only perfectly straight-line data",
-        "c": "Purely categorical data",
-        "d": "Finding angle of a triangle"
-      },
-      "correctAnswer": "a"
-    },
-    {
-      "question": "Regression models usually aim to:",
-      "answers": {
-        "a": "Minimize prediction error",
-        "b": "Increase dataset size",
-        "c": "Ignore dependent variables",
-        "d": "Remove all data variations"
-      },
-      "correctAnswer": "a"
-    },
-    {
-      "question": "In data science, regression is used for:",
-      "answers": {
-        "a": "Prediction and forecasting",
-        "b": "Sorting data alphabetically",
-        "c": "Measuring file size",
-        "d": "Playing animations"
-      },
-      "correctAnswer": "a"
-    },
-    {
-      "question": "A good regression model:",
-      "answers": {
-        "a": "Fits the underlying trend closely",
-        "b": "Gives a completely random output",
-        "c": "Avoids using any input data",
-        "d": "Changes with every simulation"
+        "a": "A = PDP⁻¹",
+        "b": "A = P + D",
+        "c": "A = D²",
+        "d": "A = I - P"
       },
       "correctAnswer": "a"
     }
