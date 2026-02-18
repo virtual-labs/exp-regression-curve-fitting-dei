@@ -1,0 +1,105 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "In Least Squares regression, the optimal solution satisfies:",
+      "answers": {
+        "a": "Residuals are maximized",
+        "b": "Xᵀ(y - Xβ) = 0",
+        "c": "Determinant of X is zero",
+        "d": "β = y"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "The geometric interpretation of Least Squares solution is:",
+      "answers": {
+        "a": "Projection of y onto column space of X",
+        "b": "Intersection of curves",
+        "c": "Matrix inversion only",
+        "d": "Gradient of polynomial"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "If the design matrix X has full column rank, then the Least Squares solution is:",
+      "answers": {
+        "a": "Non-unique",
+        "b": "Unique",
+        "c": "Always zero",
+        "d": "Complex only"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Weighted Least Squares modifies the normal equation to:",
+      "answers": {
+        "a": "XᵀXβ = y",
+        "b": "XᵀWXβ = XᵀWy",
+        "c": "WXβ = y",
+        "d": "XWβ = y"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Weighted Least Squares is most appropriate when:",
+      "answers": {
+        "a": "All errors have equal variance",
+        "b": "Errors exhibit heteroscedasticity",
+        "c": "Data is perfectly linear",
+        "d": "Sample size is small only"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "If two predictor variables are highly correlated, the regression model suffers from:",
+      "answers": {
+        "a": "Homoscedasticity",
+        "b": "Multicollinearity",
+        "c": "Orthogonality",
+        "d": "Singularity of y"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "The residual vector in Least Squares is orthogonal to:",
+      "answers": {
+        "a": "Row space of X",
+        "b": "Column space of X",
+        "c": "Null space of X",
+        "d": "Determinant"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Overfitting in curve fitting typically occurs when:",
+      "answers": {
+        "a": "Model is too simple",
+        "b": "Model has too many parameters relative to data",
+        "c": "Residuals are large",
+        "d": "Matrix is square"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "If R² is close to 1, it indicates:",
+      "answers": {
+        "a": "Poor model fit",
+        "b": "High proportion of variance explained",
+        "c": "High bias",
+        "d": "Model instability"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "In matrix-based regression, solving via QR decomposition instead of normal equations improves:",
+      "answers": {
+        "a": "Graph color",
+        "b": "Numerical stability",
+        "c": "Number of variables",
+        "d": "Data randomness"
+      },
+      "correctAnswer": "b"
+    }
+  ]
+}
