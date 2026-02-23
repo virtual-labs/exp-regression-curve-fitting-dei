@@ -1,0 +1,105 @@
+{
+  "version": 2.0,
+  "questions": [
+    {
+      "question": "The Least Squares method determines parameters by minimizing:",
+      "answers": {
+        "a": "Sum of absolute errors",
+        "b": "Sum of squared residuals",
+        "c": "Maximum error",
+        "d": "Determinant of matrix"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "A residual in regression represents:",
+      "answers": {
+        "a": "Observed value minus predicted value",
+        "b": "Predicted value minus observed value",
+        "c": "Slope of the line",
+        "d": "Matrix determinant"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "In matrix form, the normal equation for least squares is:",
+      "answers": {
+        "a": "Xβ = y",
+        "b": "XᵀXβ = Xᵀy",
+        "c": "XXᵀβ = y",
+        "d": "βX = y"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Least squares is typically used when the system of equations is:",
+      "answers": {
+        "a": "Exactly determined",
+        "b": "Underdetermined",
+        "c": "Overdetermined",
+        "d": "Nonlinear only"
+      },
+      "correctAnswer": "c"
+    },
+    {
+      "question": "The coefficient of determination (R²) measures:",
+      "answers": {
+        "a": "Slope of regression line",
+        "b": "Proportion of variance explained by the model",
+        "c": "Total number of data points",
+        "d": "Inverse of residual"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Weighted Least Squares differs from ordinary Least Squares because it:",
+      "answers": {
+        "a": "Uses logarithmic transformation",
+        "b": "Assigns different importance (weights) to data points",
+        "c": "Ignores residuals",
+        "d": "Uses integration"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "Weighted Least Squares is particularly useful when:",
+      "answers": {
+        "a": "Errors have constant variance",
+        "b": "Errors have unequal variance (heteroscedasticity)",
+        "c": "Data is perfectly linear",
+        "d": "Matrix is square"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "In linear regression y = β0 + β1x, β1 represents:",
+      "answers": {
+        "a": "Intercept",
+        "b": "Slope",
+        "c": "Residual",
+        "d": "Variance"
+      },
+      "correctAnswer": "b"
+    },
+    {
+      "question": "The solution to least squares problem can be interpreted geometrically as:",
+      "answers": {
+        "a": "Projection of vector y onto column space of X",
+        "b": "Intersection of two lines",
+        "c": "Matrix inversion only",
+        "d": "Derivative of function"
+      },
+      "correctAnswer": "a"
+    },
+    {
+      "question": "If XᵀX is singular in least squares computation, then:",
+      "answers": {
+        "a": "Unique solution always exists",
+        "b": "Matrix is full rank",
+        "c": "Columns of X are linearly dependent",
+        "d": "Residual becomes zero"
+      },
+      "correctAnswer": "c"
+    }
+  ]
+}

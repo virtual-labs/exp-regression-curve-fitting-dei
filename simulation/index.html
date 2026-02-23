@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Regression and Curve Fitting Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.4/math.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .column {
+            flex: 1;
+            width: 450px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #2c3e50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            width: 100%;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1c2833;
+        }
+        #result {
+            white-space: pre-wrap;
+            font-family: monospace;
+            margin-bottom: 50px;
+        }
+        canvas {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+        h2 {
+            text-align: center;
+            background-color: #2c3e50;
+            border-radius: 8px;
+            color: white;
+            padding: 8px;
+            margin: 0 auto 20px;
+            width: 900px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Regression and Curve Fitting</h2>
+    
+    <div class="container">
+        <!-- Input Column -->
+        <div class="column">
+            <h3><center>Input Parameters</h3>
+            
+            <div class="form-group">
+                <label for="dataInput">Enter X,Y Data Points (one pair per line):</label>
+                <textarea id="dataInput" rows="10" placeholder="1,2.1&#10;2,4.0&#10;3,6.3&#10;4,8.1&#10;5,9.9"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="weights">Weights (one per line):</label>
+                <textarea id="weights" rows="5" placeholder="1&#10;1&#10;1&#10;1&#10;1"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="xLabel">X-Axis Variable Name:</label>
+                <input type="text" id="xLabel" value="X" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-bottom:10px;">
+            </div>
+            <div class="form-group">
+                <label for="yLabel">Y-Axis Variable Name:</label>
+                <input type="text" id="yLabel" value="Y" style="width:100%;padding:8px;border:1px solid #ddd;border-radius:4px;margin-bottom:10px;">
+            </div>
+            <div class="form-group">
+                <label for="regressionType">Regression Type:</label>
+                <select id="regressionType">
+                    <option value="linear">Linear Regression (y = mx + b)</option>
+                    <option value="polynomial2">Polynomial (2nd degree)</option>
+                    <option value="exponential">Exponential (y = ae^(bx))</option>
+                </select>
+            </div>
+
+            <button onclick="calculateRegression()">Simulate</button>
+        </div>
+
+        <!-- Output Column -->
+        <div class="column">
+            <h3><center>Results</h3>
+                <div id="result"></div>
+                <h1> </h1>
+            <canvas id="plotCanvas"></canvas>
+        </div>
+    </div>
+
+    <script>
+        function parseData() {
+            const dataText = document.getElementById('dataInput').value.trim();
+            const lines = dataText.split('\n');
+            const points = [];
+            
+            for (const line of lines) {
+                const [x, y] = line.split(',').map(Number);
+                if (!isNaN(x) && !isNaN(y)) {
+                    points.push([x, y]);
+                }
+            }
+            
+            return points;
+        }
+
+        function parseWeights() {
+            const weightsText = document.getElementById('weights').value.trim();
+            if (!weightsText) return null;
+            
+            return weightsText.split('\n').map(Number);
+        }
+
+        function linearRegression(points, weights) {
+            const n = points.length;
+            let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+            let sumWeights = 0;
+            
+            for (let i = 0; i < n; i++) {
+                const w = weights ? weights[i] : 1;
+                sumWeights += w;
+                sumX += w * points[i][0];
+                sumY += w * points[i][1];
+                sumXY += w * points[i][0] * points[i][1];
+                sumXX += w * points[i][0] * points[i][0];
+            }
+
+            const slope = (sumXY * sumWeights - sumX * sumY) / (sumXX * sumWeights - sumX * sumX);
+            const intercept = (sumY - slope * sumX) / sumWeights;
+            
+            return {
+                slope,
+                intercept,
+                equation: `y = ${slope.toFixed(4)}x + ${intercept.toFixed(4)}`
+            };
+        }
+
+        function polynomialRegression(points, weights, degree = 2) {
+            const n = points.length;
+            const matrix = [];
+            const vector = [];
+            
+            for (let i = 0; i <= degree; i++) {
+                matrix[i] = [];
+                for (let j = 0; j <= degree; j++) {
+                    let sum = 0;
+                    for (let k = 0; k < n; k++) {
+                        const w = weights ? weights[k] : 1;
+                        sum += w * Math.pow(points[k][0], i + j);
+                    }
+                    matrix[i][j] = sum;
+                }
+                
+                let sum = 0;
+                for (let k = 0; k < n; k++) {
+                    const w = weights ? weights[k] : 1;
+                    sum += w * points[k][1] * Math.pow(points[k][0], i);
+                }
+                vector[i] = sum;
+            }
+            
+            const coefficients = math.lusolve(matrix, vector).flat();
+            
+            let equation = 'y = ';
+            for (let i = coefficients.length - 1; i >= 0; i--) {
+                if (i === coefficients.length - 1) {
+                    equation += `${coefficients[i].toFixed(4)}x^${i}`;
+                } else if (i === 0) {
+                    equation += ` + ${coefficients[i].toFixed(4)}`;
+                } else {
+                    equation += ` + ${coefficients[i].toFixed(4)}x^${i}`;
+                }
+            }
+            
+            return {
+                coefficients,
+                equation
+            };
+        }
+
+        function exponentialRegression(points, weights) {
+            const transformedPoints = points.map(p => [p[0], Math.log(p[1])]);
+            const linear = linearRegression(transformedPoints, weights);
+            
+            const a = Math.exp(linear.intercept);
+            const b = linear.slope;
+            
+            return {
+                a,
+                b,
+                equation: `y = ${a.toFixed(4)}e^(${b.toFixed(4)}x)`
+            };
+        }
+
+        function calculateFitMetrics(points, regression, type) {
+            let yMean = 0;
+            let ssRes = 0;
+            let ssTot = 0;
+            let sumAbsError = 0;
+            const n = points.length;
+            
+            // Calculate mean
+            points.forEach(p => yMean += p[1]);
+            yMean /= n;
+            
+            // Calculate residuals and totals
+            points.forEach(p => {
+                let yPred;
+                if (type === 'linear') {
+                    yPred = regression.slope * p[0] + regression.intercept;
+                } else if (type === 'polynomial2') {
+                    yPred = regression.coefficients[2] * p[0] * p[0] + 
+                            regression.coefficients[1] * p[0] + 
+                            regression.coefficients[0];
+                } else if (type === 'exponential') {
+                    yPred = regression.a * Math.exp(regression.b * p[0]);
+                }
+                
+                const error = p[1] - yPred;
+                ssRes += error * error;
+                ssTot += Math.pow(p[1] - yMean, 2);
+                sumAbsError += Math.abs(error);
+            });
+            
+            // Number of parameters (degrees of freedom)
+            let k;
+            if (type === 'linear') k = 2;  // slope and intercept
+            else if (type === 'polynomial2') k = 3;  // 3 coefficients
+            else if (type === 'exponential') k = 2;  // a and b
+            
+            // R-squared
+            const r2 = 1 - (ssRes / ssTot);
+            
+            // Adjusted R-squared
+            const adjR2 = 1 - ((1 - r2) * (n - 1) / (n - k - 1));
+            
+            // Root Mean Square Error (RMSE)
+            const rmse = Math.sqrt(ssRes / n);
+            
+            // Mean Absolute Error (MAE)
+            const mae = sumAbsError / n;
+            
+            // Standard Error of Estimate
+            const see = Math.sqrt(ssRes / (n - k));
+            
+            return {
+                r2,
+                adjR2,
+                rmse,
+                mae,
+                see
+            };
+        }
+
+        function niceNum(range, round) {
+            const exponent = Math.floor(Math.log10(range));
+            const fraction = range / Math.pow(10, exponent);
+            let niceFraction;
+            if (round) {
+                if (fraction < 1.5) niceFraction = 1;
+                else if (fraction < 3) niceFraction = 2;
+                else if (fraction < 7) niceFraction = 5;
+                else niceFraction = 10;
+            } else {
+                if (fraction <= 1) niceFraction = 1;
+                else if (fraction <= 2) niceFraction = 2;
+                else if (fraction <= 5) niceFraction = 5;
+                else niceFraction = 10;
+            }
+            return niceFraction * Math.pow(10, exponent);
+        }
+
+        function plotResults(points, regression, type) {
+            const canvas = document.getElementById('plotCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            canvas.width = 600;
+            canvas.height = 420;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const xLabel = document.getElementById('xLabel').value.trim() || 'X';
+            const yLabel = document.getElementById('yLabel').value.trim() || 'Y';
+            
+            let minX = Math.min(...points.map(p => p[0]));
+            let maxX = Math.max(...points.map(p => p[0]));
+            let minY = Math.min(...points.map(p => p[1]));
+            let maxY = Math.max(...points.map(p => p[1]));
+
+            // Expand range slightly for nice axis
+            const xRange = niceNum(maxX - minX, false);
+            const yRange = niceNum(maxY - minY, false);
+            const xTickSpacing = niceNum(xRange / 5, true);
+            const yTickSpacing = niceNum(yRange / 5, true);
+            const niceMinX = Math.floor(minX / xTickSpacing) * xTickSpacing;
+            const niceMaxX = Math.ceil(maxX / xTickSpacing) * xTickSpacing;
+            const niceMinY = Math.floor(minY / yTickSpacing) * yTickSpacing;
+            const niceMaxY = Math.ceil(maxY / yTickSpacing) * yTickSpacing;
+            
+            const paddingLeft = 70;
+            const paddingRight = 30;
+            const paddingTop = 30;
+            const paddingBottom = 60;
+            const plotWidth = canvas.width - paddingLeft - paddingRight;
+            const plotHeight = canvas.height - paddingTop - paddingBottom;
+            
+            const scaleX = x => paddingLeft + (x - niceMinX) * plotWidth / (niceMaxX - niceMinX);
+            const scaleY = y => canvas.height - paddingBottom - (y - niceMinY) * plotHeight / (niceMaxY - niceMinY);
+
+            // Background
+            ctx.fillStyle = '#fafafa';
+            ctx.fillRect(paddingLeft, paddingTop, plotWidth, plotHeight);
+
+            // Grid lines
+            ctx.strokeStyle = '#e0e0e0';
+            ctx.lineWidth = 1;
+            ctx.setLineDash([3, 3]);
+            for (let x = niceMinX; x <= niceMaxX + 1e-9; x += xTickSpacing) {
+                const px = scaleX(x);
+                ctx.beginPath();
+                ctx.moveTo(px, paddingTop);
+                ctx.lineTo(px, canvas.height - paddingBottom);
+                ctx.stroke();
+            }
+            for (let y = niceMinY; y <= niceMaxY + 1e-9; y += yTickSpacing) {
+                const py = scaleY(y);
+                ctx.beginPath();
+                ctx.moveTo(paddingLeft, py);
+                ctx.lineTo(canvas.width - paddingRight, py);
+                ctx.stroke();
+            }
+            ctx.setLineDash([]);
+
+            // Axes
+            ctx.beginPath();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.moveTo(paddingLeft, paddingTop);
+            ctx.lineTo(paddingLeft, canvas.height - paddingBottom);
+            ctx.lineTo(canvas.width - paddingRight, canvas.height - paddingBottom);
+            ctx.stroke();
+
+            // X tick labels
+            ctx.fillStyle = '#333';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            for (let x = niceMinX; x <= niceMaxX + 1e-9; x += xTickSpacing) {
+                const px = scaleX(x);
+                ctx.beginPath();
+                ctx.moveTo(px, canvas.height - paddingBottom);
+                ctx.lineTo(px, canvas.height - paddingBottom + 5);
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+                const label = parseFloat(x.toPrecision(6)).toString();
+                ctx.fillText(label, px, canvas.height - paddingBottom + 18);
+            }
+
+            // Y tick labels
+            ctx.textAlign = 'right';
+            for (let y = niceMinY; y <= niceMaxY + 1e-9; y += yTickSpacing) {
+                const py = scaleY(y);
+                ctx.beginPath();
+                ctx.strokeStyle = '#333';
+                ctx.lineWidth = 1.5;
+                ctx.moveTo(paddingLeft, py);
+                ctx.lineTo(paddingLeft - 5, py);
+                ctx.stroke();
+                const label = parseFloat(y.toPrecision(6)).toString();
+                ctx.fillText(label, paddingLeft - 8, py + 4);
+            }
+
+            // X-axis label (variable name)
+            ctx.fillStyle = '#111';
+            ctx.font = 'bold 13px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText(xLabel, paddingLeft + plotWidth / 2, canvas.height - 10);
+
+            // Y-axis label (variable name) — rotated
+            ctx.save();
+            ctx.translate(14, paddingTop + plotHeight / 2);
+            ctx.rotate(-Math.PI / 2);
+            ctx.textAlign = 'center';
+            ctx.fillText(yLabel, 0, 0);
+            ctx.restore();
+            
+            // Data points
+            ctx.fillStyle = '#007bff';
+            points.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(scaleX(p[0]), scaleY(p[1]), 5, 0, 2 * Math.PI);
+                ctx.fill();
+            });
+            
+            // Regression curve
+            ctx.beginPath();
+            ctx.strokeStyle = '#e63946';
+            ctx.lineWidth = 2.5;
+            const steps = 200;
+            for (let i = 0; i <= steps; i++) {
+                const x = niceMinX + (niceMaxX - niceMinX) * i / steps;
+                let y;
+                if (type === 'linear') {
+                    y = regression.slope * x + regression.intercept;
+                } else if (type === 'polynomial2') {
+                    y = regression.coefficients[2] * x * x + 
+                        regression.coefficients[1] * x + 
+                        regression.coefficients[0];
+                } else if (type === 'exponential') {
+                    y = regression.a * Math.exp(regression.b * x);
+                }
+                if (i === 0) ctx.moveTo(scaleX(x), scaleY(y));
+                else ctx.lineTo(scaleX(x), scaleY(y));
+            }
+            ctx.stroke();
+        }
+
+        function calculateRegression() {
+            try {
+                const points = parseData();
+                if (points.length < 2) {
+                    throw new Error('Please enter at least 2 data points');
+                }
+                
+                const weights = parseWeights();
+                const type = document.getElementById('regressionType').value;
+                
+                let result;
+                if (type === 'linear') {
+                    result = linearRegression(points, weights);
+                } else if (type === 'polynomial2') {
+                    result = polynomialRegression(points, weights, 2);
+                } else if (type === 'exponential') {
+                    result = exponentialRegression(points, weights);
+                }
+                
+                const metrics = calculateFitMetrics(points, result, type);
+                
+                document.getElementById('result').textContent = 
+                    `Regression Equation:\n${result.equation}\n\n` +
+                    `Degree of Fit Metrics\n` +
+                    `R-squared (R²):           ${metrics.r2.toFixed(4)}\n` +
+                    `Adjusted R²:              ${metrics.adjR2.toFixed(4)}\n` +
+                    `RMSE:                     ${metrics.rmse.toFixed(4)}\n` +
+                    `MAE:                      ${metrics.mae.toFixed(4)}\n` +
+                    `Standard Error:           ${metrics.see.toFixed(4)}`;
+                
+                plotResults(points, result, type);
+                
+            } catch (error) {
+                document.getElementById('result').innerHTML = 
+                    `<div class="error">Error: ${error.message}</div>`;
+            }
+        }
+    </script>
+<script src="../assets/js/iframeResize.js"></script>
+        
+        </body>
+</html>
